@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>你不知道的JavaScript-第一部分 | 山外小楼 | 前端攻略</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="作用域">
+    <meta name="description" content="本文转自ZengTianShengZ，您可以直接去原处阅览  第一章： 作用域是什么1、 编译原理JavaScript 被列为 ‘动态’ 或 ‘解释执行’ 语言，于其他传统语言（如 java）不同的是，JavaScript是边编译边执行的。一段源码在执行前会经历三个步骤： 分词/词法分析 -&amp;gt; 解析/语法分析 -&amp;gt; 代码生成  分词/词法分析 这个过程将字符串分解成词法单元，如 va">
+<meta name="keywords" content="作用域">
+<meta property="og:type" content="article">
+<meta property="og:title" content="你不知道的JavaScript-第一部分">
+<meta property="og:url" content="http://iyue.top/2018/08/22/js中的作用域/index.html">
+<meta property="og:site_name" content="山外小楼">
+<meta property="og:description" content="本文转自ZengTianShengZ，您可以直接去原处阅览  第一章： 作用域是什么1、 编译原理JavaScript 被列为 ‘动态’ 或 ‘解释执行’ 语言，于其他传统语言（如 java）不同的是，JavaScript是边编译边执行的。一段源码在执行前会经历三个步骤： 分词/词法分析 -&amp;gt; 解析/语法分析 -&amp;gt; 代码生成  分词/词法分析 这个过程将字符串分解成词法单元，如 va">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-24T11:54:47.723Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="你不知道的JavaScript-第一部分">
+<meta name="twitter:description" content="本文转自ZengTianShengZ，您可以直接去原处阅览  第一章： 作用域是什么1、 编译原理JavaScript 被列为 ‘动态’ 或 ‘解释执行’ 语言，于其他传统语言（如 java）不同的是，JavaScript是边编译边执行的。一段源码在执行前会经历三个步骤： 分词/词法分析 -&amp;gt; 解析/语法分析 -&amp;gt; 代码生成  分词/词法分析 这个过程将字符串分解成词法单元，如 va">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">萌新</h5>
+          <a href="mailto:cczyue@qq.com" title="cczyue@qq.com" class="mail">cczyue@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hailinmo" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">你不知道的JavaScript-第一部分</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display:none">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">你不知道的JavaScript-第一部分</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-22T12:08:24.000Z" itemprop="datePublished" class="page-time">
+  2018-08-22
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一章：-作用域是什么"><span class="post-toc-number">1.</span> <span class="post-toc-text">第一章： 作用域是什么</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、-编译原理"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1、 编译原理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、理解作用域"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2、理解作用域</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第三章：-函数作用域和块作用域"><span class="post-toc-number">2.</span> <span class="post-toc-text">第三章： 函数作用域和块作用域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、函数中的作用域"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1、函数中的作用域</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、函数作用域"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2、函数作用域</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、块作用域"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3、块作用域</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第四章：-提升"><span class="post-toc-number">3.</span> <span class="post-toc-text">第四章： 提升</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、变量提升"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">1、变量提升</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、函数提升"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2、函数提升</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第五章：-作用域闭包"><span class="post-toc-number">4.</span> <span class="post-toc-text">第五章： 作用域闭包</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、闭包的产生"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">1、闭包的产生</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、模块机制"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">2、模块机制</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#小结："><span class="post-toc-number">5.</span> <span class="post-toc-text">小结：</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-js中的作用域"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">你不知道的JavaScript-第一部分</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-22 20:08:24" datetime="2018-08-22T12:08:24.000Z"  itemprop="datePublished">2018-08-22</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>本文转自<a href="https://github.com/ZengTianShengZ/My-Blog" target="_blank" rel="noopener">ZengTianShengZ</a>，您可以直接去原处阅览</p>
+</blockquote>
+<h3 id="第一章：-作用域是什么"><a href="#第一章：-作用域是什么" class="headerlink" title="第一章： 作用域是什么"></a>第一章： 作用域是什么</h3><h4 id="1、-编译原理"><a href="#1、-编译原理" class="headerlink" title="1、 编译原理"></a>1、 编译原理</h4><p>JavaScript 被列为 ‘动态’ 或 ‘解释执行’ 语言，于其他传统语言（如 java）不同的是，JavaScript是边编译边执行的。<br>一段源码在执行前会经历三个步骤： <code>分词/词法分析</code> -&gt; <code>解析/语法分析</code> -&gt; <code>代码生成</code></p>
+<ul>
+<li><p>分词/词法分析</p>
+<p>这个过程将字符串分解成词法单元，如 var a = 2; 会被分解成词法单元 var、 a、 = 、2、;。空格一般没意义会被忽略</p>
+</li>
+<li><p>解析/语法分析</p>
+<p>这个过程会将词法单元转换成 <code>抽象语法树</code>（Abstract Syntax Tree,AST）。<br>如  var a = 2; 对应的 <code>抽象语法树</code> 如下, 可通过 <a href="https://astexplorer.net/" target="_blank" rel="noopener">在线可视化AST</a> 网址在线分析</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;type&quot;: &quot;Program&quot;,</span><br><span class="line">  &quot;start&quot;: 0,</span><br><span class="line">  &quot;end&quot;: 10,</span><br><span class="line">  &quot;body&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;type&quot;: &quot;VariableDeclaration&quot;,</span><br><span class="line">      &quot;start&quot;: 0,</span><br><span class="line">      &quot;end&quot;: 10,</span><br><span class="line">      &quot;declarations&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;type&quot;: &quot;VariableDeclarator&quot;,</span><br><span class="line">          &quot;start&quot;: 4,</span><br><span class="line">          &quot;end&quot;: 9,</span><br><span class="line">          &quot;id&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;Identifier&quot;,</span><br><span class="line">            &quot;start&quot;: 4,</span><br><span class="line">            &quot;end&quot;: 5,</span><br><span class="line">            &quot;name&quot;: &quot;a&quot;</span><br><span class="line">          &#125;,</span><br><span class="line">          &quot;init&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;Literal&quot;,</span><br><span class="line">            &quot;start&quot;: 8,</span><br><span class="line">            &quot;end&quot;: 9,</span><br><span class="line">            &quot;value&quot;: 2,</span><br><span class="line">            &quot;raw&quot;: &quot;2&quot;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      &quot;kind&quot;: &quot;var&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  &quot;sourceType&quot;: &quot;module&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>代码生成</p>
+<p>将 AST 转换成可执行的代码，存放于内存中，并分配内存和转化为一些机器指令</p>
+</li>
+</ul>
+<h4 id="2、理解作用域"><a href="#2、理解作用域" class="headerlink" title="2、理解作用域"></a>2、理解作用域</h4><p>其实结合上面提到的编译原理，作用域就好理解了。作用域就是当前执行代码对这些标识符的访问权限。<br>编译器会在当前作用域中声明一些变量，运行时引擎会去作用域中查找这些变量（其实就是一个寻址的过程），如果找到这些变量就可以操作变量，找不到就往上一层作用域找（作用域链的概念），或者返回 null</p>
+<h3 id="第三章：-函数作用域和块作用域"><a href="#第三章：-函数作用域和块作用域" class="headerlink" title="第三章： 函数作用域和块作用域"></a>第三章： 函数作用域和块作用域</h3><h4 id="1、函数中的作用域"><a href="#1、函数中的作用域" class="headerlink" title="1、函数中的作用域"></a>1、函数中的作用域</h4><p>每声明一个函数都会形成一个作用域，那作用域有什么用呢，它能让该作用域内的变量和函数不被外界访问到，也可以反过来说是不让该作用域内的变量或函数污染全局。</p>
+<p>对比：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = 123</span><br><span class="line">function bar() &#123;</span><br><span class="line">  //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>和<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">  var a = 123</span><br><span class="line">  function bar() &#123;</span><br><span class="line">    //...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>变量 a 和函数 bar 用一个函数 foo 包裹起来，函数 foo 会形成一个作用域，变量 a 和函数 bar 外界将无法访问，同时变量或函数也不会污染全局。</p>
+<h4 id="2、函数作用域"><a href="#2、函数作用域" class="headerlink" title="2、函数作用域"></a>2、函数作用域</h4><p>进一步思考，上面例子的变量 a 和函数 bar 有了作用域，但函数 foo 不也是暴露在全局，也对全局造成污染了啊。是的，JavaScript对这种情况提出了解决方案： <code>立即执行函数 (IIFE)</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(function foo() &#123;</span><br><span class="line">  var a = 123</span><br><span class="line">  function bar() &#123;</span><br><span class="line">    //...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<p>第一个（）将函数变成表达式，第二个（）执行了这个函数，最终函数 foo 也形成了自己的作用域，不会污染到全局，同时也不被全局访问的到。</p>
+<h4 id="3、块作用域"><a href="#3、块作用域" class="headerlink" title="3、块作用域"></a>3、块作用域</h4><p>es6之前JavaScript是没有块作用域这个概念的，这与一般的语言（如Java ，C）很大不同，看下面这个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (var i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">  console.log(&apos;i=&apos;, i);</span><br><span class="line">&#125;</span><br><span class="line">console.log(&apos;输出&apos;, i); // 输出 10</span><br></pre></td></tr></table></figure>
+<p>for 循环定义了变量 i，通常我们只想这个变量 i 在循环内使用，但忽略了 i 其实是作用在外部作用域(函数或全局)的。所以循环过后也能正常打印出 i ,因为没有块的概念。</p>
+<p>甚至连 try/catch 也没形成块作用域:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">  for (var i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">    console.log(&apos;i=&apos;, i);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; catch (error) &#123;&#125;</span><br><span class="line">console.log(&apos;输出&apos;, i); // 输出 10</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解决方法1</p>
+</blockquote>
+<p>形成块作用域的方法当然是使用 es6 的 let 和 const 了， let 为其声明的变量隐式的劫持了所在的块作用域。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (let i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">  console.log(&apos;i=&apos;, i);</span><br><span class="line">&#125;</span><br><span class="line">console.log(&apos;输出&apos;, i); // ReferenceError: i is not defined</span><br></pre></td></tr></table></figure>
+<p>将上面例子的 var 换成 let 最后输出就报错了 ReferenceError: i is not defined ，说明被 let 声明的 i 只作用在了 for 这个块中。</p>
+<p>除了 let 会让 for、if、try/catch 等形成块，JavaScript 的 <code>{}</code> 也能形成块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  let name = &apos;曾田生&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(name); //ReferenceError: name is not defined</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解决方法2</p>
+</blockquote>
+<p>早在没 es6 的 let 声明之前，常用的做法是利用 <code>函数也能形成作用域</code> 这么个概念来解决一些问题的。</p>
+<p>看个例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">  var result = []</span><br><span class="line">  for (var i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">    result[i] = function () &#123;</span><br><span class="line">      return i</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(i）// i 作用在整个函数，for 执行完此时 i 已经等于 10 了</span><br><span class="line">  return result</span><br><span class="line">&#125;</span><br><span class="line">var result = foo()</span><br><span class="line">console.log(result[0]()); // 输出 10 期望 0</span><br><span class="line">console.log(result[1]()); // 输出 10 期望 1</span><br><span class="line">console.log(result[2]()); // 输出 10 期望 2</span><br></pre></td></tr></table></figure></p>
+<p>这个例子出现的问题是执行数组函数最终都输出了 10， 因为 i 作用在整个函数，for 执行完此时 i 已经等于 10 了, 所以当后续执行函数 <code>result[x]()</code> 内部返回的 i 已经是 10 了。</p>
+<p>利用函数的作用域来解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">  var result = []</span><br><span class="line">  for (var i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">    result[i] = function (num) &#123;</span><br><span class="line">      return function () &#123; // 函数形成一个作用域，内部变量被私有化了</span><br><span class="line">        return num</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;(i)</span><br><span class="line">  &#125;</span><br><span class="line">  return result</span><br><span class="line">&#125;</span><br><span class="line">var result = foo()</span><br><span class="line">console.log(result[0]()); // 0</span><br><span class="line">console.log(result[1]()); // 1</span><br><span class="line">console.log(result[2]()); // 2</span><br></pre></td></tr></table></figure>
+<p>上面的例子也是挺典型的，一般面试题比较考基础的话就会被问道，上面例子不仅考察到了块作用域的概念，函数作用域的概念，还考察到了闭包的概念（闭包后续讲但不影响这个例子的理解），多琢磨一下就理解了。</p>
+<h3 id="第四章：-提升"><a href="#第四章：-提升" class="headerlink" title="第四章： 提升"></a>第四章： 提升</h3><p>提升指的是变量提升和函数提升，为什么JavaScript会有提升这个概念呢，其实也很好理解，因为JavaScript代码是先 <code>编译</code> 后 <code>执行</code> 的，所以在编译阶段就会先对变量和函数做声明，在执行阶段就出现了所谓的变量提升和函数提升了。</p>
+<h4 id="1、变量提升"><a href="#1、变量提升" class="headerlink" title="1、变量提升"></a>1、变量提升</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(a); // undefined</span><br><span class="line">var a = 1;</span><br></pre></td></tr></table></figure>
+<p>上面代码 <code>console.log(a); // undefined</code> 就是因为编译阶段先对变量做了声明,先声明了个变量 a, 并默认赋值 undefined</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a;</span><br><span class="line">console.log(a); // undefined</span><br><span class="line">a = 1;</span><br></pre></td></tr></table></figure>
+<h4 id="2、函数提升"><a href="#2、函数提升" class="headerlink" title="2、函数提升"></a>2、函数提升</h4><p>函数同样也存在提升，这就是为什么函数能先调用后声明了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">foo();</span><br><span class="line">function foo() &#123;</span><br><span class="line">  console.log(&apos;---foo----&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意:函数表达式不会被提升</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">foo();</span><br><span class="line">var foo = function() &#123;</span><br><span class="line">  console.log(&apos;---foo----&apos;);</span><br><span class="line">&#125;</span><br><span class="line">// TypeError: foo is not a function</span><br></pre></td></tr></table></figure>
+<p>注意：函数会首先被提升，然后才是变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var foo = 1;</span><br><span class="line">foo();</span><br><span class="line">function foo() &#123;</span><br><span class="line">  console.log(&apos;---foo----&apos;);</span><br><span class="line">&#125;</span><br><span class="line">// TypeError: foo is not a function</span><br></pre></td></tr></table></figure>
+<p>分析一下，因为上面例子编译后是这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var foo = undefined; // 变量名赋值 undefined</span><br><span class="line">function foo() &#123;     // 函数先提升</span><br><span class="line">  console.log(&apos;---foo----&apos;);</span><br><span class="line">&#125;</span><br><span class="line">foo = 1;             // 但接下去是变量被重新赋值了 1，是个Number类型</span><br><span class="line">foo();               // Number类型当然不能用函数方式调用，就报错了</span><br><span class="line">// TypeError: foo is not a function</span><br></pre></td></tr></table></figure>
+<h3 id="第五章：-作用域闭包"><a href="#第五章：-作用域闭包" class="headerlink" title="第五章： 作用域闭包"></a>第五章： 作用域闭包</h3><p>闭包问题一直会在JavaScript被提起，是JavaScript一个比较奇葩的概念</p>
+<h4 id="1、闭包的产生"><a href="#1、闭包的产生" class="headerlink" title="1、闭包的产生"></a>1、闭包的产生</h4><blockquote>
+<p>闭包的概念： 当函数可以记住并访问所在的词法作用域时，就产生了闭包</p>
+</blockquote>
+<p>概念貌似挺简单的，简单分析下，首先闭包是 <code>产生的</code>，是在代码执行中产生的，有的一些网络博文直接将闭包定义为 <code>某一个特殊函数</code> 是错的。</p>
+<p>闭包是怎么产生的呢，一个函数能访问到所在函数作用域就产生了闭包，注意到作用域的概念，咱们最上面的章节有提到，看下面例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">  var a = 0;</span><br><span class="line">  function bar() &#123;</span><br><span class="line">    a++;</span><br><span class="line">    console.log(a);</span><br><span class="line">  &#125;</span><br><span class="line">  return bar;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var bat = foo()</span><br><span class="line">bat() // 1</span><br><span class="line">bat() // 2</span><br><span class="line">bat() // 3</span><br></pre></td></tr></table></figure>
+<p>结合例子分析一下： 函数 foo 内部返回了函数 bar ,外部声明个变量 bat 拿到 foo 返回的函数 bar ，执行 bat() 发现能正常输出 1 ，注意前面章节提到的作用域，变量 a 是在函数 foo 内部的一个私有变量，不能被外界访问的，但外部函数 bat 却能访问的到私有变量 a，这说明了 <code>外部函数 bat 持有函数 foo 的作用域</code> ，也就产生了闭包。</p>
+<p>闭包的形成有什么用呢，JavaScript 让闭包的存在明显有它的作用，其中一个作用是为了模块化，当然你也可以利用外部函数持有另一个函数作用域的闭包特性去做更多的事情，但这边就暂且讨论模块化这个作用。</p>
+<p>函数有什么作用呢，私有化变量或方法呀，那函数内的变量和方法被私有化了函数怎么和外部做 <code>交流</code> 呢, 暴露出一些变量或方法呀</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">  var _a = 0;</span><br><span class="line">  var b = 0;</span><br><span class="line">  function _add() &#123;</span><br><span class="line">    b = _a + 10    </span><br><span class="line">  &#125;</span><br><span class="line">  function bar() &#123;</span><br><span class="line">    _add()</span><br><span class="line">  &#125;</span><br><span class="line">  function getB() &#123;</span><br><span class="line">    return b</span><br><span class="line">  &#125;</span><br><span class="line">  return &#123;</span><br><span class="line">    bar: bar,</span><br><span class="line">    getB: getB</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var bat = foo()</span><br><span class="line">bat.bar()</span><br><span class="line">bat.getB() // 10</span><br></pre></td></tr></table></figure>
+<p>上面例子函数 foo 可以理解为一个模块，内部声明了一些私有变量和方法，也对外界暴露了一些方法，只是在执行的过程中顺带产生了一个闭包</p>
+<h4 id="2、模块机制"><a href="#2、模块机制" class="headerlink" title="2、模块机制"></a>2、模块机制</h4><p>上面提到了闭包的产生和作用，貌似在使用 <code>es6语法</code> 开发的过程中很少用到了闭包，但实际上我们一直在用闭包的概念的。</p>
+<blockquote>
+<p> foo.js</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var _a = 0;</span><br><span class="line">var b = 0;</span><br><span class="line">function _add() &#123;</span><br><span class="line">  b = _a + 10</span><br><span class="line">&#125;</span><br><span class="line">function bar() &#123;</span><br><span class="line">  _add()</span><br><span class="line">&#125;</span><br><span class="line">function getB() &#123;</span><br><span class="line">  return b</span><br><span class="line">&#125;</span><br><span class="line">export default &#123;</span><br><span class="line">  bar: bar,</span><br><span class="line">  getB: getB</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> bat.js</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import bat from &apos;foo&apos;</span><br><span class="line"></span><br><span class="line">bat.bar()</span><br><span class="line">bat.getB() // 10</span><br></pre></td></tr></table></figure>
+<p>上面例子是 es6 模块的写法，是不是惊奇的发现变量 bat 可以记住并访问模块 foo 的作用域，这符合了闭包的概念。</p>
+<h3 id="小结："><a href="#小结：" class="headerlink" title="小结："></a>小结：</h3><p>本章节我们深入理解了JavaScript的 <code>作用域</code>，<code>提升</code>，<code>闭包</code>等概念，希望你能有所收获，这也是我在读《你不知道的JavaScript·上卷》的一些体会。下一部分整理下 <code>this解析</code>、<code>对象</code>、<code>原型</code> 等一些概念。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-08-24T11:54:47.723Z" itemprop="dateUpdated">2018-08-24 19:54:47</time>
+</span><br>
+
+
+        
+        欢迎一起交流，本文链接：<a href="/2018/08/22/js中的作用域/" target="_blank" rel="external">http://iyue.top/2018/08/22/js中的作用域/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://iyue.top">
+            <img src="/img/avatar.jpg" alt="萌新">
+            萌新
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/作用域/">作用域</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/08/22/js中的作用域/&title=《你不知道的JavaScript-第一部分》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/08/22/js中的作用域/&title=《你不知道的JavaScript-第一部分》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/08/22/js中的作用域/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《你不知道的JavaScript-第一部分》 — 山外小楼&url=http://iyue.top/2018/08/22/js中的作用域/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/08/22/js中的作用域/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/08/24/js变量在内存的存放解惑/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">js变量在内存的存放解惑</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/08/16/将本地代码关联到远程仓库/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">将本地代码关联到远程仓库</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        <p><span>萌新 &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/08/22/js中的作用域/&title=《你不知道的JavaScript-第一部分》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/08/22/js中的作用域/&title=《你不知道的JavaScript-第一部分》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/08/22/js中的作用域/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《你不知道的JavaScript-第一部分》 — 山外小楼&url=http://iyue.top/2018/08/22/js中的作用域/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/08/22/js中的作用域/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACHUlEQVR42u3ay07DMBAF0P7/T4ctUiHcO26Rah+vokATnyxG8/DjEa/raX2//3x9/6vkLY93LAwMjI9lXLcrecHsCe2dPz4KBgbGAYzfNpcE3CRQ3ofj+zvJ0zAwMDCSgJtcJ8klBgYGxqsY6yngfSDGwMDAmJWg6wVtHprfWItjYGB8ICPvuv//9VvmGxgYGB/FuBbWrDGXjC3rnWBgYGzNyJtc+UGKJIlcacNhYGCczLj/QZ6PrY8HZiUxBgbGCYxZwJ017PIiOd8DBgbG3ow8LM4SvvxYWPt2DAyMExjtUHC29ZX7UeDGwMA4gDFrqOUDyLYwrj8xBgbGAYyVpK1t1a234X74KwYGxtaMPBC/KnFcSSiTN2JgYOzHiFrtI16bArZ4DAyMMxlJsZqH4HbM0B4Rw8DAOIcx21YbcNuRQNtPw8DAOIGRF5Nt8Zng86ZePZXFwMDYjpEXscNB48KBs7bxh4GBsRMjPwDRjiSTTzNr9mFgYJzGmP3reistf3KeUGJgYOzKWAmybSstb5zVQRwDA2NrRt70XzpIupwUDsMuBgbGFoyrXPlYsW39L7XkMDAwtma0IXJWZM5GobMWHgYGxq6M2bGGdpwwgxUpKQYGxgGMfADQFqVtkM0LYAwMDIy83TYrVl875sTAwMCYFbErzbK6uMXAwDiA0TbFVraVh9SihMbAwNiaMSsd8zt5o78dpmJgYBzA+AJ12cdlT7qWugAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '主人还回来吗？';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
