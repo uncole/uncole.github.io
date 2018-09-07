@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>django的跨域请求设置 | 山外小楼 | 前端攻略</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="问题引出由于django本身的权限管理是基于cookie来认证的，而整个过程并不需要前端做什么，直接后端完成；但跨域的时候，产生几个问题；  django如何跨域？ django跨域后可以正常的写入cookie吗？  其实，跨域实现的方法有很多种，可以查看前端常见跨域解决方案（全），在此我们使用cors跨域的方式 cors跨域概述浏览器将CORS请求分成两类：简单请求（simple request">
+<meta property="og:type" content="article">
+<meta property="og:title" content="django的跨域请求设置">
+<meta property="og:url" content="http://iyue.top/2018/09/06/django的跨域请求设置/index.html">
+<meta property="og:site_name" content="山外小楼">
+<meta property="og:description" content="问题引出由于django本身的权限管理是基于cookie来认证的，而整个过程并不需要前端做什么，直接后端完成；但跨域的时候，产生几个问题；  django如何跨域？ django跨域后可以正常的写入cookie吗？  其实，跨域实现的方法有很多种，可以查看前端常见跨域解决方案（全），在此我们使用cors跨域的方式 cors跨域概述浏览器将CORS请求分成两类：简单请求（simple request">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-07T10:05:57.845Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="django的跨域请求设置">
+<meta name="twitter:description" content="问题引出由于django本身的权限管理是基于cookie来认证的，而整个过程并不需要前端做什么，直接后端完成；但跨域的时候，产生几个问题；  django如何跨域？ django跨域后可以正常的写入cookie吗？  其实，跨域实现的方法有很多种，可以查看前端常见跨域解决方案（全），在此我们使用cors跨域的方式 cors跨域概述浏览器将CORS请求分成两类：简单请求（simple request">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">萌新</h5>
+          <a href="mailto:cczyue@qq.com" title="cczyue@qq.com" class="mail">cczyue@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hailinmo" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">django的跨域请求设置</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display:none">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">django的跨域请求设置</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-09-06T03:26:30.000Z" itemprop="datePublished" class="page-time">
+  2018-09-06
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题引出"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题引出</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#cors跨域概述"><span class="post-toc-number">2.</span> <span class="post-toc-text">cors跨域概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#django跨域设置"><span class="post-toc-number">3.</span> <span class="post-toc-text">django跨域设置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#显式设置cookie"><span class="post-toc-number">4.</span> <span class="post-toc-text">显式设置cookie</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前端设置"><span class="post-toc-number">5.</span> <span class="post-toc-text">前端设置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#突然来的疑问"><span class="post-toc-number">6.</span> <span class="post-toc-text">突然来的疑问</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解答疑问"><span class="post-toc-number">7.</span> <span class="post-toc-text">解答疑问</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#跨域写本域cookie"><span class="post-toc-number">8.</span> <span class="post-toc-text">跨域写本域cookie</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-django的跨域请求设置"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">django的跨域请求设置</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-09-06 11:26:30" datetime="2018-09-06T03:26:30.000Z"  itemprop="datePublished">2018-09-06</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="问题引出"><a href="#问题引出" class="headerlink" title="问题引出"></a>问题引出</h2><p>由于django本身的权限管理是基于cookie来认证的，而整个过程并不需要前端做什么，直接后端完成；但跨域的时候，产生几个问题；</p>
+<ol>
+<li>django如何跨域？</li>
+<li>django跨域后可以正常的写入cookie吗？</li>
+</ol>
+<p>其实，跨域实现的方法有很多种，可以查看<a href="https://segmentfault.com/a/1190000011145364" target="_blank" rel="noopener">前端常见跨域解决方案（全）</a>，在此我们使用cors跨域的方式</p>
+<h2 id="cors跨域概述"><a href="#cors跨域概述" class="headerlink" title="cors跨域概述"></a>cors跨域概述</h2><p>浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request）  </p>
+<p>相关内容可以参考<a href="https://www.cnblogs.com/keyi/p/6726089.html" target="_blank" rel="noopener">跨域CORS原理及调用具体示例</a></p>
+<blockquote>
+<p>引起我们注意的一点就是同为post请求，当<code>Content-Type</code>的值为<code>application/json</code>时，就变成了非简单请求，基础表现就是浏览器会先发一个”预检”请求</p>
+</blockquote>
+<h2 id="django跨域设置"><a href="#django跨域设置" class="headerlink" title="django跨域设置"></a>django跨域设置</h2><ol>
+<li>执行安装</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># https://github.com/ottoyiu/django-cors-headers/</span></span><br><span class="line">pip install django-cors-headers</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>配置settings.py</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = (</span><br><span class="line">    ...</span><br><span class="line">    <span class="string">'corsheaders'</span>,</span><br><span class="line">    ...</span><br><span class="line">)</span><br><span class="line">...</span><br><span class="line">MIDDLEWARE = [  <span class="comment"># Or MIDDLEWARE_CLASSES on Django &lt; 1.10</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="string">'corsheaders.middleware.CorsMiddleware'</span>,</span><br><span class="line">    <span class="string">'django.middleware.common.CommonMiddleware'</span>,</span><br><span class="line">    ...</span><br><span class="line">]</span><br><span class="line">...</span><br><span class="line"><span class="comment"># cookies will be allowed to be included in cross-site HTTP requests</span></span><br><span class="line">CORS_ALLOW_CREDENTIALS = <span class="keyword">True</span> </span><br><span class="line"><span class="comment"># If True, the whitelist will not be used and all origins will be accepted</span></span><br><span class="line">CORS_ORIGIN_ALLOW_ALL = <span class="keyword">False</span></span><br><span class="line"><span class="comment"># A list of origin hostnames that are authorized to make cross-site HTTP requests</span></span><br><span class="line">CORS_ORIGIN_WHITELIST = (</span><br><span class="line">    <span class="string">'localhost:8888'</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="显式设置cookie"><a href="#显式设置cookie" class="headerlink" title="显式设置cookie"></a>显式设置cookie</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># view.py</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">'code'</span>: <span class="number">0</span>,</span><br><span class="line">            <span class="string">'msg'</span>: <span class="string">'this is a test'</span>,</span><br><span class="line">            <span class="string">'data'</span>: <span class="string">'POST'</span></span><br><span class="line">        &#125;</span><br><span class="line">        rep = HttpResponse(json.dumps(data, cls=CJsonEncoder), content_type=<span class="string">"application/json"</span>)</span><br><span class="line">        rep.set_cookie(<span class="string">'key'</span>, <span class="string">'value'</span>)</span><br><span class="line">        <span class="keyword">return</span> rep</span><br></pre></td></tr></table></figure>
+<h2 id="前端设置"><a href="#前端设置" class="headerlink" title="前端设置"></a>前端设置</h2><p>前端默认不允许跨域携带cookies，需进行显式的设置；不同的库可能有一些细微的差别；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原生js（亲测可用，其余未作测试）</span></span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();  </span><br><span class="line">xhr.open(<span class="string">"POST"</span>, <span class="string">"http://localhost:8000/api/test/"</span>, <span class="literal">true</span>);  </span><br><span class="line">xhr.withCredentials = <span class="literal">true</span>; <span class="comment">//支持跨域发送cookies</span></span><br><span class="line">xhr.send();</span><br><span class="line"></span><br><span class="line"><span class="comment">// jQuery</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    type: <span class="string">"POST"</span>,</span><br><span class="line">    url: <span class="string">"http://localhost:8000/api/test/"</span>,</span><br><span class="line">    dataType: <span class="string">'jsonp'</span>,</span><br><span class="line">    xhrFields: &#123;<span class="attr">withCredentials</span>: <span class="literal">true</span>&#125;,</span><br><span class="line">    crossDomain: <span class="literal">true</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// axios（vue常用的方案）</span></span><br><span class="line">axios.create(&#123;</span><br><span class="line">  timeout: <span class="number">5000</span>,</span><br><span class="line">  withCredentials: <span class="literal">true</span> <span class="comment">// 允许携带cookie</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="突然来的疑问"><a href="#突然来的疑问" class="headerlink" title="突然来的疑问"></a>突然来的疑问</h2><p>写到此时，我所作的测试都是在本地测的，服务器端在localhost:8000,前端在localhost:8888;而跨域操作所写的cookie均在localhost之下，这样就有一个问题，跨域读写的cookie到底是哪里？是发起请求页的域还是请求地址的域？</p>
+<h2 id="解答疑问"><a href="#解答疑问" class="headerlink" title="解答疑问"></a>解答疑问</h2><p>我们得到的答案是cors跨域读写的cookie都是请求地址的cookie；比如我们请求第三方cdn，并不会携带本站的cookie，发送跨域请求也一样，只会携带请求指向地址的域的cookie。（这也是跨站伪造请求csrf的原理）  </p>
+<blockquote>
+<p>服务器如果要发送Cookie，Access-Control-Allow-Origin就不能设为星号，必须指定明确的、与请求网页一致的域名。同时，Cookie依然遵循同源政策，只有用服务器域名设置的Cookie才会上传，其他域名的Cookie并不会上传，且（跨源）原网页代码中的document.cookie也无法读取服务器域名下的Cookie。</p>
+</blockquote>
+<p>如果非要跨域写cookie呢？有什么办法吗？</p>
+<h2 id="跨域写本域cookie"><a href="#跨域写本域cookie" class="headerlink" title="跨域写本域cookie"></a>跨域写本域cookie</h2><p>查到的方法如下：<br>可以通过ngix反向代理跨域配置：proxy_cookie_domain b.com a.com;<br>也可以通过中间件http-proxy-middleware代理跨域时，配置加上cookieDomainRewrite: ‘a.com’参数，都是用来修改转发过来的cookie中域名为当前a.com域，所以实现了a.com下cookie写入。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-09-07T10:05:57.845Z" itemprop="dateUpdated">2018-09-07 18:05:57</time>
+</span><br>
+
+
+        
+        欢迎一起交流，本文链接：<a href="/2018/09/06/django的跨域请求设置/" target="_blank" rel="external">http://iyue.top/2018/09/06/django的跨域请求设置/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://iyue.top">
+            <img src="/img/avatar.jpg" alt="萌新">
+            萌新
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/06/django的跨域请求设置/&title=《django的跨域请求设置》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/06/django的跨域请求设置/&title=《django的跨域请求设置》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/06/django的跨域请求设置/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《django的跨域请求设置》 — 山外小楼&url=http://iyue.top/2018/09/06/django的跨域请求设置/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/06/django的跨域请求设置/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/09/06/单点登录的实现方式/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">单点登录的实现方式</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/09/05/post请求的提交数据的几种方式/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">post请求的提交数据的几种方式</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        <p><span>萌新 &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/06/django的跨域请求设置/&title=《django的跨域请求设置》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/06/django的跨域请求设置/&title=《django的跨域请求设置》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/06/django的跨域请求设置/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《django的跨域请求设置》 — 山外小楼&url=http://iyue.top/2018/09/06/django的跨域请求设置/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/06/django的跨域请求设置/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACK0lEQVR42u3aQY6DMAwF0N7/0ow02w6ZbyetRPKyqoBCXhYGO3694nH9jrsj72fv7vD+r/GRxQMDA+OxjGs47q5JkOO7JYuSzA0DA+McxjjI5uEyD8fJoiRzw8DAwMinkgRrDAwMjO8wqpPOPwoxMDAwxoxVaWe1xJZfvywXx8DAeCCjujHwzd8f3N/AwMB4COMqjpnEdVWQ/eOJGBgYWzPG25MzD+6Fzl7TBgYGxt6MJDXNj4wnMd9yccvGwMDYmpFkgr2GiWRpqssUBWUMDIztGL0tgV6rRP6UQuKKgYFxDCNPI/PPu/xjbnyH6CwGBsYBjORv+YdgEo57Se/tWQwMjAMYvSS2mnDmd8vLeRgYGOcw8oBbDbvzzWcfeW9gYGA8ipE3PeTpbp6CVjcyy80ZGBgYGzHyonyzcF8Mqfk9MTAwTmP0QuqqK/PAfXs3DAyMTRnVMLqqFSMPpuVmCwwMjCMZyTZA0uBVxRQWCAMDY2tGnmr2im7VQl51UQpVQwwMjMcyqq0Vefms2loxk+hiYGCcxpghJVuY1XS38H7AwMDYlJGP3tR7zRbVD1YMDIy9GTObAdWd0t6VUejHwMDYmjETcHsluR5+2dsDAwPjsYxVQbbXupFT/9nCxMDAOIBRzX170+olyVE5DwMDA6PYyDXfNJbMDQMDA2O+BFYtvVW3PDEwME5jzCSx800YY0bExsDA2JrRa3TIS2/5hKpLOdUzgoGB8QzGDx8HFBmuqA/7AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '主人还回来吗？';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

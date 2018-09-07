@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>单点登录的实现方式 | 山外小楼 | 前端攻略</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="该篇文章很多段落来自单点登录原理与简单实现，大家可以先拜读这篇文章，这篇文章讲述十分详细，我这里只是插了一些自己的疑虑，而且可能还说的不是很清楚，权当自己做个笔记了 单系统登录机制 http无状态协议  http作为通信协议，是无状态的，浏览器的每一次请求，服务器会独立处理，不与之前或之后的请求产生关联。   但这也同时意味着，任何用户都能通过浏览器访问服务器资源，如果想保护服务器的某些资源，必须">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单点登录的实现方式">
+<meta property="og:url" content="http://iyue.top/2018/09/06/单点登录的实现方式/index.html">
+<meta property="og:site_name" content="山外小楼">
+<meta property="og:description" content="该篇文章很多段落来自单点登录原理与简单实现，大家可以先拜读这篇文章，这篇文章讲述十分详细，我这里只是插了一些自己的疑虑，而且可能还说的不是很清楚，权当自己做个笔记了 单系统登录机制 http无状态协议  http作为通信协议，是无状态的，浏览器的每一次请求，服务器会独立处理，不与之前或之后的请求产生关联。   但这也同时意味着，任何用户都能通过浏览器访问服务器资源，如果想保护服务器的某些资源，必须">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://iyue.top/img/sso_001.png">
+<meta property="og:image" content="http://iyue.top/img/sso_002.png">
+<meta property="og:updated_time" content="2018-09-07T10:00:26.330Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="单点登录的实现方式">
+<meta name="twitter:description" content="该篇文章很多段落来自单点登录原理与简单实现，大家可以先拜读这篇文章，这篇文章讲述十分详细，我这里只是插了一些自己的疑虑，而且可能还说的不是很清楚，权当自己做个笔记了 单系统登录机制 http无状态协议  http作为通信协议，是无状态的，浏览器的每一次请求，服务器会独立处理，不与之前或之后的请求产生关联。   但这也同时意味着，任何用户都能通过浏览器访问服务器资源，如果想保护服务器的某些资源，必须">
+<meta name="twitter:image" content="http://iyue.top/img/sso_001.png">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">萌新</h5>
+          <a href="mailto:cczyue@qq.com" title="cczyue@qq.com" class="mail">cczyue@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hailinmo" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">单点登录的实现方式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display:none">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">单点登录的实现方式</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-09-06T13:02:01.000Z" itemprop="datePublished" class="page-time">
+  2018-09-06
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#单系统登录机制"><span class="post-toc-number">1.</span> <span class="post-toc-text">单系统登录机制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#多系统的复杂性"><span class="post-toc-number">2.</span> <span class="post-toc-text">多系统的复杂性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#单点登录"><span class="post-toc-number">3.</span> <span class="post-toc-text">单点登录</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-单点登录的实现方式"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">单点登录的实现方式</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-09-06 21:02:01" datetime="2018-09-06T13:02:01.000Z"  itemprop="datePublished">2018-09-06</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>该篇文章很多段落来自<a href="https://www.cnblogs.com/ywlaker/p/6113927.html" target="_blank" rel="noopener">单点登录原理与简单实现</a>，大家可以先拜读这篇文章，这篇文章讲述十分详细，我这里只是插了一些自己的疑虑，而且可能还说的不是很清楚，权当自己做个笔记了</p>
+<h2 id="单系统登录机制"><a href="#单系统登录机制" class="headerlink" title="单系统登录机制"></a>单系统登录机制</h2><ol>
+<li>http无状态协议</li>
+</ol>
+<p>http作为通信协议，是无状态的，浏览器的每一次请求，服务器会独立处理，不与之前或之后的请求产生关联。  </p>
+<p>但这也同时意味着，任何用户都能通过浏览器访问服务器资源，如果想保护服务器的某些资源，必须限制浏览器请求；要限制浏览器请求，必须鉴别浏览器请求，响应合法请求，忽略非法请求；要鉴别浏览器请求，必须清楚浏览器请求状态。既然http协议无状态，那就让服务器和浏览器共同维护一个状态吧！这就是会话机制。</p>
+<ol start="2">
+<li>会话机制</li>
+</ol>
+<p>浏览器第一次请求服务器，服务器创建一个会话，并将会话的id作为响应的一部分发送给浏览器，浏览器存储会话id，并在后续第二次和第三次请求中带上会话id，服务器取得请求中的会话id就知道是不是同一个用户了。  </p>
+<blockquote>
+<p>这里有个session和cookie的区别；其实session算是cookie的变种；因为本身的机制形式并没有变，依然是需要浏览器有一个信息串和服务器得会话对象所对应，只不过早先得cookie是在浏览器端保存得用户的信息，服务器通过这些信息来识别用户，而session方式是把信息保存在了服务器端，然后生成一个session的id字符串存在了cookie，相对之前的做法安全一些；但本质未发生变化。</p>
+</blockquote>
+<blockquote>
+<p>当然，浏览器但端的信息其实不是必须存在cookie里，也可以放在localstotage或者其他可存的地方，这样防止从cookie得到敏感信息，但这样就需要前端做一个手工处理，将这个id发送给服务器端；目前大多的系统还是主要以cookie来存储的，一是读写cookie浏览器可以自动完成，二是在单点登录系统时可以帮其他子应用自动登录。</p>
+</blockquote>
+<ol start="3">
+<li>登录状态</li>
+</ol>
+<p>有了会话机制，登录状态就好明白了，我们假设浏览器第一次请求服务器需要输入用户名与密码验证身份，服务器拿到用户名密码去数据库比对，正确的话说明当前持有这个会话的用户是合法用户，应该将这个会话标记为“已授权”或者“已登录”等等之类的状态。</p>
+<blockquote>
+<p>个人理解，http是无状态的，那么每个受限请求都是需要验证的，那么前端传来的id只要可以对应后端的session，那么就是合法的，所以不太清楚后端是否还要做一个会话标记的操作；</p>
+</blockquote>
+<h2 id="多系统的复杂性"><a href="#多系统的复杂性" class="headerlink" title="多系统的复杂性"></a>多系统的复杂性</h2><p>web系统由单系统发展成多系统组成的应用群，复杂性应该由系统内部承担，而不是用户。无论web系统内部多么复杂，对用户而言，都是一个统一的整体，也就是说，用户访问web系统的整个应用群与访问单个系统一样，登录/注销只要一次就够了。</p>
+<p>单系统登录解决方案的核心是cookie，cookie携带会话id在浏览器与服务器之间维护会话状态。但cookie是有限制的，这个限制就是cookie的域（通常对应网站的域名），浏览器发送http请求时会自动携带与该域匹配的cookie，而不是所有cookie。也就是说A应用登录后，打开B应用，B是拿不到A的cookie的。</p>
+<p>这时我们就将web应用群中所有子系统的域名统一在一个顶级域名下，在顶级域名下设置的cookie，其子域名是可以访问其cookie的。  </p>
+<blockquote>
+<p>这里有个cookie设置的规则（有点儿像全局作用域和子作用域）：<br>设置cookie只可以向上设置，可设置本级域名，或者向上的域名；比如顶级域名只能设置domain为顶级域名，不能设置为二级域名或者三级域名等等，否则cookie无法生成；二级域名可以设置本域及顶级域；<br>获取cookie只可以向上获取，可获取本级域名，或者向上的域名；比如顶级域名只能获取到domain设置为顶级域名的cookie，domain设置为其他子级域名的无法获取；二级域名能读取设置了domain为顶级域名或者自身的cookie，不能读取其他二级域名domain的cookie。<br>总的来说，顶级域名设置的cookie可以共享【需要指定domain主域名的host】给二级域名，也可以自己私有【不指定domain】</p>
+</blockquote>
+<ul>
+<li>这里云平台系统采用的就是这种方式，sessionid由统一认证系统生成，并写到顶级域名下面，其余子系统通过访问cookie获取该id与统一认证系统进行权限验证；不过这里是子系统通过统一认证系统生成的token然后在服务端去统一认证系统换取sessionid，由子系统写到cookie里的顶级域名下的，不太清楚这一步是什么意思；这样，各个子系统的共享统一生成的sessionid，并且每个受限请求都去找认证系统授权；这种方式也很方便的可以做到统一登出，只要使统一认证系统的session失效就可以了。</li>
+</ul>
+<p>然而，可行并不代表好，共享cookie的方式存在众多局限。首先，应用群域名得统一；其次，应用群各系统使用的技术（至少是web服务器）要相同，不然cookie的key值（tomcat为JSESSIONID）不同，无法维持会话，共享cookie的方式是无法实现跨语言技术平台登录的，比如java、php、.net系统之间；第三，cookie本身不安全。</p>
+<p>因此，我们需要一种全新的登录方式来实现多系统应用群的登录，这就是单点登录。</p>
+<h2 id="单点登录"><a href="#单点登录" class="headerlink" title="单点登录"></a>单点登录</h2><p>这里说的单点登录，是指有一个统一认证中心，可实现一处登录，全都登录，一处登出，全部登出，并且不局限与同一个顶级域名下。</p>
+<p>单点登录的简单流程如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/img/sso_001.png" alt="单点登录流程" title="">
+                </div>
+                <div class="image-caption">单点登录流程</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/img/sso_002.png" alt="单点登出流程" title="">
+                </div>
+                <div class="image-caption">单点登出流程</div>
+            </figure>
+<p>其中有两个主要注意的地方，就是在认证中心登录的时候，会帮其他子系统都登录，登出的时候会帮其他子系统都登出；另外子系统的sessionid是各自维护还是统一有认证系统维护；</p>
+<ol>
+<li>统一登录登出机制</li>
+</ol>
+<p>在统一认证中心登录后，可以以跨域访问的形式，将统一的生成的token，逐个发送给各个子系统，子系统收到后向认证中心认证token，认证通过后可以给自己系统下写入cookie，这样，在访问其他子系统的时候，请求会带上之前写的cookie，从而打开子系统即为登录状态；</p>
+<p>在子系统登出时会跳转到登录页面，此时可以以跨域访问的形式，逐个访问各个子系统请求，这些请求会携带各自域名下的sessionid，子系统就会注销该id，完成各个子系统的登出；</p>
+<ol start="2">
+<li>sessinid维护方式</li>
+</ol>
+<p>如果各自维护sessionid，登录的时候不通知子系统的话，打开其他子系统的时候会有一个重定向到认证中心获取状态的过程；通知了的话就无需重定向了；在登出的时候认证中心必须去通知各个子系统登出，不然子系统无法知道已登出；</p>
+<p>如果认证系统统一维护sessionid的话，登录不通知也会去重定向；登出就不必通知了。</p>
+<ul>
+<li>如金融的sso认证系统便没有去通知其他子系统登录状态，在访问子系统的时候会重定向到认证地址，认证地址根据cookie信息，确认已登录后，将token带在请求上，重定向回子系统，子系统拿到token后去认证中心通过后再写sessionid，这样会有一个重定向url变更的过程；而登出的时候，由于并未通知其他子系统，所以登出无法做到统一登出；不过，此处既然没有做统一登出，那么在登录的时候也不应该去通知子系统去登录；这样这个系统其实算是个统一认证中心，不算严格意义的单点登录。</li>
+</ul>
+<ol start="3">
+<li>通知其他子系统登录登出的形式</li>
+</ol>
+<p>由于域名不同，通知其他子系统只能以跨域的形式去访问各自的服务器；可以以jsonp的形式,也可以是cors的形式，或者其他跨域方式，但需要将统一认证生成的token信息手动加到请求中，因为跨域请求不会携带本域的cookie信息。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-09-07T10:00:26.330Z" itemprop="dateUpdated">2018-09-07 18:00:26</time>
+</span><br>
+
+
+        
+        欢迎一起交流，本文链接：<a href="/2018/09/06/单点登录的实现方式/" target="_blank" rel="external">http://iyue.top/2018/09/06/单点登录的实现方式/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://iyue.top">
+            <img src="/img/avatar.jpg" alt="萌新">
+            萌新
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/06/单点登录的实现方式/&title=《单点登录的实现方式》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/06/单点登录的实现方式/&title=《单点登录的实现方式》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/06/单点登录的实现方式/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《单点登录的实现方式》 — 山外小楼&url=http://iyue.top/2018/09/06/单点登录的实现方式/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/06/单点登录的实现方式/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/09/06/django的跨域请求设置/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">django的跨域请求设置</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        <p><span>萌新 &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/06/单点登录的实现方式/&title=《单点登录的实现方式》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/06/单点登录的实现方式/&title=《单点登录的实现方式》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/06/单点登录的实现方式/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《单点登录的实现方式》 — 山外小楼&url=http://iyue.top/2018/09/06/单点登录的实现方式/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/06/单点登录的实现方式/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3a0WrDMAwF0P7/T2ewp8JIeiU1g9jHT6Okjk8fNMnS6xWv43ddf/L++fv6+/nZPmfPfG1hYGA8lnFcrvkLzna7xuRnw8DA2IdxHWSvj3IdTJNQm5A+fBcDAwMjCJfVQ+fJIgYGBkYv8OVJZL4PBgYGxjUjKWKrCV+vGL69FsfAwHggo9oY+M+/b+xvYGBgPIRxFFfvom3yZHQqDAyMpRlJOZq0JPNWZXWkI387BgbG2owk17qjfK2OXJTZGBgYSzCqCd98zGJ+qfehs4GBgbEcI29kTsJutQnRa1dgYGDswMgx+evnwbrZQsDAwFiOkadu1YGJPIxWr9VOGwMYGBjLMa4Tu+pV2mSEorcDBgbGDoxqOthL9XoNyHLQx8DAWJqRj0Hk116TcbFemMbAwNiBMWk05r9Q8vyokMbAwFiUkQTBSRidjHTkZ8PAwNiHkR+lOvKVF8a91ikGBsYOjOpwWH6tn4yO9VoUGBgYuzHmCVwVPD9JVMRiYGA8nFFIvOLSNL+SS96OgYGBUb18/1bYzVPAqNeKgYGxNKP6tW+NSvTA0fMYGBjLMY7i6pW4VXCegGJgYOzAqGZcvXDZaxUkBTAGBsY+jDzI3rHygDv674GBgbEEoxpkqylgvkOzFsfAwMCIA3ESNCdp4unOGBgYGK2gWR2bGBXDGBgYGzB6RWw1vPbSvoiNgYGxNKPXGKgmfJOkM/+xMDAwlmP8AA5Z9Rt+e1mfAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '主人还回来吗？';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
