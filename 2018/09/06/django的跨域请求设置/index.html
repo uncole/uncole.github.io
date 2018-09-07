@@ -20,15 +20,16 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="">
+    <meta name="keywords" content="django,跨域,cookie">
     <meta name="description" content="问题引出由于django本身的权限管理是基于cookie来认证的，而整个过程并不需要前端做什么，直接后端完成；但跨域的时候，产生几个问题；  django如何跨域？ django跨域后可以正常的写入cookie吗？  其实，跨域实现的方法有很多种，可以查看前端常见跨域解决方案（全），在此我们使用cors跨域的方式 cors跨域概述浏览器将CORS请求分成两类：简单请求（simple request">
+<meta name="keywords" content="django,跨域,cookie">
 <meta property="og:type" content="article">
 <meta property="og:title" content="django的跨域请求设置">
 <meta property="og:url" content="http://iyue.top/2018/09/06/django的跨域请求设置/index.html">
 <meta property="og:site_name" content="山外小楼">
 <meta property="og:description" content="问题引出由于django本身的权限管理是基于cookie来认证的，而整个过程并不需要前端做什么，直接后端完成；但跨域的时候，产生几个问题；  django如何跨域？ django跨域后可以正常的写入cookie吗？  其实，跨域实现的方法有很多种，可以查看前端常见跨域解决方案（全），在此我们使用cors跨域的方式 cors跨域概述浏览器将CORS请求分成两类：简单请求（simple request">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-07T10:05:57.845Z">
+<meta property="og:updated_time" content="2018-09-07T12:14:05.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="django的跨域请求设置">
 <meta name="twitter:description" content="问题引出由于django本身的权限管理是基于cookie来认证的，而整个过程并不需要前端做什么，直接后端完成；但跨域的时候，产生几个问题；  django如何跨域？ django跨域后可以正常的写入cookie吗？  其实，跨域实现的方法有很多种，可以查看前端常见跨域解决方案（全），在此我们使用cors跨域的方式 cors跨域概述浏览器将CORS请求分成两类：简单请求（simple request">
@@ -182,7 +183,7 @@
 <h2 id="django跨域设置"><a href="#django跨域设置" class="headerlink" title="django跨域设置"></a>django跨域设置</h2><ol>
 <li>执行安装</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># https://github.com/ottoyiu/django-cors-headers/</span></span><br><span class="line">pip install django-cors-headers</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># https://github.com/ottoyiu/django-cors-headers/</span></span><br><span class="line">pip install django-cors-headers</span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li>配置settings.py</li>
 </ol>
@@ -205,7 +206,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-09-07T10:05:57.845Z" itemprop="dateUpdated">2018-09-07 18:05:57</time>
+    最后更新时间：<time datetime="2018-09-07T12:14:05.002Z" itemprop="dateUpdated">2018-09-07 20:14:05</time>
 </span><br>
 
 
@@ -227,6 +228,8 @@
 
         <div class="post-footer">
             
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cookie/">cookie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/django/">django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域/">跨域</a></li></ul>
+
 
             
 <div class="page-share-wrap">
