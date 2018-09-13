@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>XSS与CSRF | 山外小楼 | 前端攻略</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="XSS,CSRF">
+    <meta name="description" content="引言针对前端安全，主要有XSS跨站脚本攻击，CSRF跨站伪造请求，SQL注入等，今天主要讨论下关于前两种 XSS跨站脚本攻击更多具体详细的解释可以查看XSS（跨站脚本攻击）的最全总结 XSS攻击通常被分为两类：存储型和反射型。还有第三类，和基于DOM的xss；下面我们不说定义直接看看怎么操作  反射型  一般有搜索框的网站，在搜索东西的时候会在结果页呈现你搜索的字符； 比如你搜索笔记本电脑，网站会">
+<meta name="keywords" content="XSS,CSRF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XSS与CSRF">
+<meta property="og:url" content="http://iyue.top/2018/09/07/XXS与CSRF/index.html">
+<meta property="og:site_name" content="山外小楼">
+<meta property="og:description" content="引言针对前端安全，主要有XSS跨站脚本攻击，CSRF跨站伪造请求，SQL注入等，今天主要讨论下关于前两种 XSS跨站脚本攻击更多具体详细的解释可以查看XSS（跨站脚本攻击）的最全总结 XSS攻击通常被分为两类：存储型和反射型。还有第三类，和基于DOM的xss；下面我们不说定义直接看看怎么操作  反射型  一般有搜索框的网站，在搜索东西的时候会在结果页呈现你搜索的字符； 比如你搜索笔记本电脑，网站会">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-08T05:04:00.141Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="XSS与CSRF">
+<meta name="twitter:description" content="引言针对前端安全，主要有XSS跨站脚本攻击，CSRF跨站伪造请求，SQL注入等，今天主要讨论下关于前两种 XSS跨站脚本攻击更多具体详细的解释可以查看XSS（跨站脚本攻击）的最全总结 XSS攻击通常被分为两类：存储型和反射型。还有第三类，和基于DOM的xss；下面我们不说定义直接看看怎么操作  反射型  一般有搜索框的网站，在搜索东西的时候会在结果页呈现你搜索的字符； 比如你搜索笔记本电脑，网站会">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">萌新</h5>
+          <a href="mailto:cczyue@qq.com" title="cczyue@qq.com" class="mail">cczyue@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hailinmo" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">XSS与CSRF</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display:none">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">XSS与CSRF</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-09-07T12:18:20.000Z" itemprop="datePublished" class="page-time">
+  2018-09-07
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#引言"><span class="post-toc-number">1.</span> <span class="post-toc-text">引言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#XSS跨站脚本攻击"><span class="post-toc-number">2.</span> <span class="post-toc-text">XSS跨站脚本攻击</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CSRF"><span class="post-toc-number">3.</span> <span class="post-toc-text">CSRF</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-XXS与CSRF"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">XSS与CSRF</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-09-07 20:18:20" datetime="2018-09-07T12:18:20.000Z"  itemprop="datePublished">2018-09-07</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>针对前端安全，主要有XSS跨站脚本攻击，CSRF跨站伪造请求，SQL注入等，今天主要讨论下关于前两种</p>
+<h2 id="XSS跨站脚本攻击"><a href="#XSS跨站脚本攻击" class="headerlink" title="XSS跨站脚本攻击"></a>XSS跨站脚本攻击</h2><p>更多具体详细的解释可以查看<a href="https://www.cnblogs.com/aware-why/p/5845202.html" target="_blank" rel="noopener">XSS（跨站脚本攻击）的最全总结</a></p>
+<p>XSS攻击通常被分为两类：存储型和反射型。还有第三类，和基于DOM的xss；下面我们不说定义直接看看怎么操作</p>
+<ol>
+<li>反射型</li>
+</ol>
+<p>一般有搜索框的网站，在搜索东西的时候会在结果页呈现你搜索的字符；</p>
+<p>比如你搜索<code>笔记本电脑</code>，网站会提示<code>你搜索“笔记本电脑”的结果如下</code>，这说明用户的输入在页面上有了呈现；那么我们输入一段恶意脚本，也许也会原样输出执行，比如我们输入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(<span class="number">1</span>)&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p>恶意代码就是你可以放一段脚本，比较加入一个js文件请求，在js代码里来获取cookie等用户信息，并发送给自己；但用户并不会自己输入恶意脚本，那么就通过邮件等方式，让用户点击搜索结果连接，以达到脚本注入的目的；</p>
+<p>当然基本上没什么网站会有这么明显的漏洞，这里只是演示说如何实现反射型攻击。</p>
+<ol start="2">
+<li>存储型</li>
+</ol>
+<p>这种一般常出现在用户可输入，然后在网站动态展示，大家都能看到的网站，如微博，社区，评论等地方；常见的做法就是发一段脚本到输入区，网站会记录下来并动态的渲染在页面上，只要访问的用户都能看到；由于这种情形注入的脚本被写到了服务器数据库中，所以叫存储型攻击；</p>
+<ol start="3">
+<li>基于DOM</li>
+</ol>
+<p>这种攻击的前提是易受攻击的网站有一个HTML页面采用不安全的方式从document.location 或document.URL 或 document.referrer获取数据（或者任何其他攻击者可以修改的对象），也就是说恶意代码直接来自这些可任意被修改的对象；详细可查看<a href="https://www.oschina.net/translate/dom-based-xss-of-third-kind" target="_blank" rel="noopener">基于 DOM 的第三类跨站脚本 XSS</a></p>
+<p>如上，一般只要这个网站某个页面将用户的输入包含在它生成的动态输出页面中并且未经验证或编码转义，这个缺陷就存在。</p>
+<ol start="4">
+<li><p>防范方法</p>
+<ol>
+<li>所有前端的页面渲染，尽量使用ajax异步进行，从后台获取要显示的数据。</li>
+<li>前端提交过来的数据，在后台入口处统统对HTML中的关键字进行html编码转义。</li>
+</ol>
+</li>
+</ol>
+<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><p>更多具体详细的解释可以查看<a href="http://www.vuln.cn/7134" target="_blank" rel="noopener">邪恶的CSRF – superfish</a></p>
+<p>CSRF叫跨域伪造请求，其实就是模拟用户操作，就是在A网站登录的情况下，B网站可以发起A网站发起的请求；要达成这个目的就需要解决跨域的问题；  </p>
+<p>传统的ajax都有跨域的限制，但如发起get请求就很方便，以打开url的方式，jsonp的方式，请求三方资源的方式，都可以达成目的；</p>
+<p>而采用原生表单的提交方式，可以发起post跨域请求；</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-09-08T05:04:00.141Z" itemprop="dateUpdated">2018-09-08 13:04:00</time>
+</span><br>
+
+
+        
+        欢迎一起交流，本文链接：<a href="/2018/09/07/XXS与CSRF/" target="_blank" rel="external">http://iyue.top/2018/09/07/XXS与CSRF/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://iyue.top">
+            <img src="/img/avatar.jpg" alt="萌新">
+            萌新
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XSS/">XSS</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/07/XXS与CSRF/&title=《XSS与CSRF》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/07/XXS与CSRF/&title=《XSS与CSRF》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/07/XXS与CSRF/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《XSS与CSRF》 — 山外小楼&url=http://iyue.top/2018/09/07/XXS与CSRF/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/07/XXS与CSRF/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/09/13/网址最后的斜杠问题/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">网址最后的斜杠问题</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/09/06/单点登录的实现方式/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">单点登录的实现方式</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        <p><span>萌新 &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/07/XXS与CSRF/&title=《XSS与CSRF》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/07/XXS与CSRF/&title=《XSS与CSRF》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/07/XXS与CSRF/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《XSS与CSRF》 — 山外小楼&url=http://iyue.top/2018/09/07/XXS与CSRF/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/07/XXS与CSRF/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABw0lEQVR42u3aQW7DMAwEwPz/0+4DWrtLUlKNYnQqEtUZXwhqxc8nXtfj+r7n7gnJzgULFxd3zO1Rkh97fs7z57evhIuLe5CblJ67/ddg5QZcXNw3c5PilXyLi4v7n7i9kpS0Pri4uG/j5ogdxC1nNVxc3AG32rjs+HtLvouLi9vi9iKMXjA6D1NwcXHPcHsNSvLD1XansBMXF/cI9/mL6oVr7wnll8fFxd3GnY9Y9a5PmtexuLi4R7iTtqY6itGLTQsBCi4u7gZusun5k16By49VuLi4Z7h5qUoaoOrxqTywhYuLe5zbi0J67Ut1IOyHQoaLi7uZ24s1qyMaedhx+2K4uLgHuXnk0Rue6IWnhbqLi4u7lDt/UN6sTMYvRvczuLi4LW7yz9Urz+eSlN/q/DKEgYuLe4Tbu42ZHHvKASsuLu5BblKwEkr1mdVDFy4u7m7uVVz5XWe1YEWxLC4u7hFuvlYFoPlQV+86BxcXdxW3d0SpxqOTdqpQfXFxcZdyq4UmaX3yohYNZuHi4r6emxSpSZO0rF7i4uL+ETcpZ5PBi8WFDBcXN+auDUmrsQguLu7buHlgmheyXuySN0a4uLjbuF9/GEjnCsTdlgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '主人还回来吗？';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
