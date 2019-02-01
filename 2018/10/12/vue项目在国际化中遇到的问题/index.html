@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>vue项目在国际化中遇到的问题 | 山外小楼 | 前端攻略</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="前言由于项目的对外，所以项目需要做国际化，vue项目的国际化自然要用到vue-i18n这个插件，现就国际化中遇到的情况及解决方案整理如下 翻译文本在template中这里的文本会即时替换 翻译文本在实例js中这里的文本由于在首次实例化后就不会再变化，所以需要手动触发一次变化 翻译文本在实例之外的js中mega    开发    鉴于原系统的维护性较差，项目插件引用众多，代码过多冗余，国际化繁琐，开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue项目在国际化中遇到的问题">
+<meta property="og:url" content="http://iyue.top/2018/10/12/vue项目在国际化中遇到的问题/index.html">
+<meta property="og:site_name" content="山外小楼">
+<meta property="og:description" content="前言由于项目的对外，所以项目需要做国际化，vue项目的国际化自然要用到vue-i18n这个插件，现就国际化中遇到的情况及解决方案整理如下 翻译文本在template中这里的文本会即时替换 翻译文本在实例js中这里的文本由于在首次实例化后就不会再变化，所以需要手动触发一次变化 翻译文本在实例之外的js中mega    开发    鉴于原系统的维护性较差，项目插件引用众多，代码过多冗余，国际化繁琐，开">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-12T11:38:58.820Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue项目在国际化中遇到的问题">
+<meta name="twitter:description" content="前言由于项目的对外，所以项目需要做国际化，vue项目的国际化自然要用到vue-i18n这个插件，现就国际化中遇到的情况及解决方案整理如下 翻译文本在template中这里的文本会即时替换 翻译文本在实例js中这里的文本由于在首次实例化后就不会再变化，所以需要手动触发一次变化 翻译文本在实例之外的js中mega    开发    鉴于原系统的维护性较差，项目插件引用众多，代码过多冗余，国际化繁琐，开">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">萌新</h5>
+          <a href="mailto:cczyue@qq.com" title="cczyue@qq.com" class="mail">cczyue@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hailinmo" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">vue项目在国际化中遇到的问题</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display:none">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">vue项目在国际化中遇到的问题</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-10-12T06:54:47.000Z" itemprop="datePublished" class="page-time">
+  2018-10-12
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#翻译文本在template中"><span class="post-toc-number">2.</span> <span class="post-toc-text">翻译文本在template中</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#翻译文本在实例js中"><span class="post-toc-number">3.</span> <span class="post-toc-text">翻译文本在实例js中</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#翻译文本在实例之外的js中"><span class="post-toc-number">4.</span> <span class="post-toc-text">翻译文本在实例之外的js中</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-vue项目在国际化中遇到的问题"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">vue项目在国际化中遇到的问题</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-10-12 14:54:47" datetime="2018-10-12T06:54:47.000Z"  itemprop="datePublished">2018-10-12</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于项目的对外，所以项目需要做国际化，vue项目的国际化自然要用到vue-i18n这个插件，现就国际化中遇到的情况及解决方案整理如下</p>
+<h2 id="翻译文本在template中"><a href="#翻译文本在template中" class="headerlink" title="翻译文本在template中"></a>翻译文本在<code>template</code>中</h2><p>这里的文本会即时替换</p>
+<h2 id="翻译文本在实例js中"><a href="#翻译文本在实例js中" class="headerlink" title="翻译文本在实例js中"></a>翻译文本在实例<code>js</code>中</h2><p>这里的文本由于在首次实例化后就不会再变化，所以需要手动触发一次变化</p>
+<h2 id="翻译文本在实例之外的js中"><a href="#翻译文本在实例之外的js中" class="headerlink" title="翻译文本在实例之外的js中"></a>翻译文本在实例之外的js中</h2><p>mega    开发    鉴于原系统的维护性较差，项目插件引用众多，代码过多冗余，国际化繁琐，开发vue框架的新版mega（框架部分，首页部分内容，中英文国际化）<br>clever_db<br>开发<br>慢查询详情页面改版完成，新版不需要用户选择分时天粒度，</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-10-12T11:38:58.820Z" itemprop="dateUpdated">2018-10-12 19:38:58</time>
+</span><br>
+
+
+        
+        欢迎一起交流，本文链接：<a href="/2018/10/12/vue项目在国际化中遇到的问题/" target="_blank" rel="external">http://iyue.top/2018/10/12/vue项目在国际化中遇到的问题/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://iyue.top">
+            <img src="/img/avatar.jpg" alt="萌新">
+            萌新
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/10/12/vue项目在国际化中遇到的问题/&title=《vue项目在国际化中遇到的问题》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/10/12/vue项目在国际化中遇到的问题/&title=《vue项目在国际化中遇到的问题》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/10/12/vue项目在国际化中遇到的问题/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《vue项目在国际化中遇到的问题》 — 山外小楼&url=http://iyue.top/2018/10/12/vue项目在国际化中遇到的问题/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/10/12/vue项目在国际化中遇到的问题/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/11/23/echarts在vue中获取不到高度的问题/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">echarts在vue中获取不到高度的问题</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/10/11/vue使用中问题/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">vue使用中问题</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        <p><span>萌新 &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/10/12/vue项目在国际化中遇到的问题/&title=《vue项目在国际化中遇到的问题》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/10/12/vue项目在国际化中遇到的问题/&title=《vue项目在国际化中遇到的问题》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/10/12/vue项目在国际化中遇到的问题/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《vue项目在国际化中遇到的问题》 — 山外小楼&url=http://iyue.top/2018/10/12/vue项目在国际化中遇到的问题/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/10/12/vue项目在国际化中遇到的问题/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACqElEQVR42u3a0W7jMAwEwPz/T/deC9zF3aVENAeMnwrHkTQuICokX6/4+vp2vbv/96ffn3l+/nnkd89cu/Dw8PAOlt5O/wxoP01GzteMh4eHt83b2NDzxeX38zXj4eHhfQ6v3cSTrTzB4OHh4f2PvOT5NpzkC8XDw8P7NF6+WT//+M/vz17TYq4FDw8PL+blVaTP+XulvoeHh4d3XFVvN998+pNkRLFCPDw8vAXerFQ/a8zKW7VOymb/mBEPDw9vmXd+Fs157aLbEfDw8PA2eG0C9O5huh2hTtTi4eHhLfDyrfm8fHWeFM5XEoUHPDw8vANennpI7icTnweSOrDh4eHhLfDyCW4lL+6mdIdNBnh4eHiXeHkAODkut0vPZ8TDw8Pb5s0mm4WEPJGRl8R+eAV4eHh4a7y23JVMnyNPQkXUQICHh4d3lTdLQ8w2+lvNWBeSuXh4eHgjXr7ctpTVHqNnDViv/CE8PDy8S7xb6YB8c5+9jjayvX0GDw8Pb43X7rSzBqyT8/7wH4CHh4d3zGvL/+2B+KSQlr+UtyPg4eHhLfDyoWfJhbZNKk8cJ0g8PDy8DV5SoJo1EGyc9/PV4uHh4e3xZgflFpksJW9QuJDqxcPDwzvg5YtuE6xty0ISEupWAzw8PLwFXrIR54POXlabvGgTzXh4eHh3eW0JKk8E5K+mLbYlKQk8PDy8Pd7z1/LCVVvuunZcTg70eHh4eFd5X+U1K2LNmqiO8tB4eHh4a7x2w22brk6CSnsQb9sX8PDw8E54STBoQ0W7lbetA0XTFR4eHt4ar51yxmujU/7MD4EBDw8P75d4s6TqLDDkR3Y8PDy8T+bNSHkgSQB54Q0PDw9vm9cOkTdsJeFhhoy+i4eHh7fAq5uZRos7TzcsNhPg4eHhpbw/HZGSl48o3P0AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '主人还回来吗？';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -142,6 +142,179 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-async-await里的并行和串行"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-02-01 10:24:14" datetime="2019-02-01T02:24:14.000Z"  itemprop="datePublished">2019-02-01</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/01/async-await里的并行和串行/">async/await里的并行和串行</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+文章出处：https://www.cnblogs.com/JRliu/p/9004304.html
+
+我们在使用 async/await 语法时，有时会这样用：
+1234567891011121314151617181920function getName () &#123;    return new Promise((resolve, reject)=&gt;&#123;       ...
+    
+
+        <a href="/2019/02/01/async-await里的并行和串行/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-echarts在vue中获取不到高度的问题"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-11-23 18:21:45" datetime="2018-11-23T10:21:45.000Z"  itemprop="datePublished">2018-11-23</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/11/23/echarts在vue中获取不到高度的问题/">echarts在vue中获取不到高度的问题</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        问题引出在项目中，采用了element-ui框架及echarts；模板结构是一个tab切换页中，引入了自己做了简单封装的echarts；在上一版还可以正常显示出图，而在后来对封装的echarts做了简单更新后，图表在tab切换页无法显示出来；
+问题排查通过查看element元素发生，图表元素canvas的宽度为0（高度是我自己指定的）；然后在echarts组件中通过apiechartsins...
+    
+
+        <a href="/2018/11/23/echarts在vue中获取不到高度的问题/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-vue项目在国际化中遇到的问题"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-10-12 14:54:47" datetime="2018-10-12T06:54:47.000Z"  itemprop="datePublished">2018-10-12</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/10/12/vue项目在国际化中遇到的问题/">vue项目在国际化中遇到的问题</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        前言由于项目的对外，所以项目需要做国际化，vue项目的国际化自然要用到vue-i18n这个插件，现就国际化中遇到的情况及解决方案整理如下
+翻译文本在template中这里的文本会即时替换
+翻译文本在实例js中这里的文本由于在首次实例化后就不会再变化，所以需要手动触发一次变化
+翻译文本在实例之外的js中mega    开发    鉴于原系统的维护性较差，项目插件引用众多，代码过多冗余，国际化繁...
+    
+
+        <a href="/2018/10/12/vue项目在国际化中遇到的问题/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-vue使用中问题"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-10-11 15:45:52" datetime="2018-10-11T07:45:52.000Z"  itemprop="datePublished">2018-10-11</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/10/11/vue使用中问题/">vue使用中问题</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        前言记录vue在使用中遇到的需要注意的问题
+正文
+vue-router中路由path值的问题
+
+在嵌套路由使用时，设置path值的时候，注意，如是顶层路由，可以写为/home,即可以加/；在设置二级路由的时候虽然也可以这么写，但就失去了路由层级，在官方文档中有提示：  
+
+要注意，以 / 开头的嵌套路径会被当作根路径。 这让你充分的使用嵌套组件而无须设置嵌套的路径。  
+
+
+vue-rout...
+    
+
+        <a href="/2018/10/11/vue使用中问题/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-常见HTTP状态码解释"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -436,201 +609,6 @@ cors跨域概述浏览器将CORS请求分成两类：简单请求（simple requ.
 
         </li>
     
-        <li class="post-list-item fade">
-            <article id="post-js变量在内存的存放解惑"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-08-24 19:56:56" datetime="2018-08-24T11:56:56.000Z"  itemprop="datePublished">2018-08-24</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/08/24/js变量在内存的存放解惑/">js变量在内存的存放解惑</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        js变量的类型我们知道js变量有两种类型
-
-基本类型值，指简单的数据段，对于undefined、null、boolean、number、string这5种简单数据类型可以直接操作保存在变量中的实际值，也就是按值访问。
-引用类型值，指那些可能由多个值构成的对象，只能操作对象的引用而不是实际的对象，所以要得到引用类型这种值只能按引用访问。
-
-变量的存放方式有如下代码段（赋值基本类型）12var ...
-    
-
-        <a href="/2018/08/24/js变量在内存的存放解惑/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/值类型/">值类型</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-js中的作用域"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-08-22 20:08:24" datetime="2018-08-22T12:08:24.000Z"  itemprop="datePublished">2018-08-22</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/08/22/js中的作用域/">你不知道的JavaScript-第一部分</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        
-本文转自ZengTianShengZ，您可以直接去原处阅览
-
-第一章： 作用域是什么1、 编译原理JavaScript 被列为 ‘动态’ 或 ‘解释执行’ 语言，于其他传统语言（如 java）不同的是，JavaScript是边编译边执行的。一段源码在执行前会经历三个步骤： 分词/词法分析 -&gt; 解析/语法分析 -&gt; 代码生成
-
-分词/词法分析
-这个过程将字符串分解成词法单元，如...
-    
-
-        <a href="/2018/08/22/js中的作用域/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/作用域/">作用域</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/闭包/">闭包</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-将本地代码关联到远程仓库"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-08-16 14:28:57" datetime="2018-08-16T06:28:57.000Z"  itemprop="datePublished">2018-08-16</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/08/16/将本地代码关联到远程仓库/">将本地代码关联到远程仓库</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        在项目的建立初期都是先搭建基础框架，在完成基础框架的搭建后，才把代码放到代码管理服务器上，让项目组成员进行检出从而进行需求的开发。而基础框架的搭建大部分都是先在个人的电脑上完成的，当完成框架搭建后，此时就要把代码共享到代码服务器上供开发人员检出。  
-准备工作本地安装git，在远程建有仓库，由于我们是将本地代码推到远程仓库，所以建远程仓库的时候不要进行初始化，即不必在仓库下添加任何文件，如r...
-    
-
-        <a href="/2018/08/16/将本地代码关联到远程仓库/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-vue中引入图片的方式"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-08-16 14:11:14" datetime="2018-08-16T06:11:14.000Z"  itemprop="datePublished">2018-08-16</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/08/16/vue中引入图片的方式/">vue中引入图片的方式</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        template和css中在 template 的 img 标签等和 css 的背景图中
-1&lt;img class="logo-img" src="~@/assets/logo/logo.png" key="max-logo" /&gt;
-1background: url(~@/assets/dongdong.png) 4px 4px no-repeat;
-其中‘~’为的是让 webpa...
-    
-
-        <a href="/2018/08/16/vue中引入图片的方式/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
     </ul>
 
     
@@ -653,7 +631,7 @@ cors跨域概述浏览器将CORS请求分成两类：简单请求（simple requ.
         </p>
     </div> -->
     <div class="bottom">
-        <p><span>萌新 &copy; 2017 - 2018</span>
+        <p><span>萌新 &copy; 2017 - 2019</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

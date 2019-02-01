@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>async/await里的并行和串行 | 山外小楼 | 前端攻略</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="文章出处：https://www.cnblogs.com/JRliu/p/9004304.html  我们在使用 async/await 语法时，有时会这样用： 1234567891011121314151617181920function getName () &amp;#123;    return new Promise((resolve, reject)=&amp;gt;&amp;#123;        se">
+<meta property="og:type" content="article">
+<meta property="og:title" content="async&#x2F;await里的并行和串行">
+<meta property="og:url" content="http://iyue.top/2019/02/01/async-await里的并行和串行/index.html">
+<meta property="og:site_name" content="山外小楼">
+<meta property="og:description" content="文章出处：https://www.cnblogs.com/JRliu/p/9004304.html  我们在使用 async/await 语法时，有时会这样用： 1234567891011121314151617181920function getName () &amp;#123;    return new Promise((resolve, reject)=&amp;gt;&amp;#123;        se">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-01T02:28:02.292Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="async&#x2F;await里的并行和串行">
+<meta name="twitter:description" content="文章出处：https://www.cnblogs.com/JRliu/p/9004304.html  我们在使用 async/await 语法时，有时会这样用： 1234567891011121314151617181920function getName () &amp;#123;    return new Promise((resolve, reject)=&amp;gt;&amp;#123;        se">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">萌新</h5>
+          <a href="mailto:cczyue@qq.com" title="cczyue@qq.com" class="mail">cczyue@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hailinmo" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">async/await里的并行和串行</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display:none">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">async/await里的并行和串行</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-02-01T02:24:14.000Z" itemprop="datePublished" class="page-time">
+  2019-02-01
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-async-await里的并行和串行"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">async/await里的并行和串行</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-02-01 10:24:14" datetime="2019-02-01T02:24:14.000Z"  itemprop="datePublished">2019-02-01</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>文章出处：<a href="https://www.cnblogs.com/JRliu/p/9004304.html" target="_blank" rel="noopener">https://www.cnblogs.com/JRliu/p/9004304.html</a></p>
+</blockquote>
+<p>我们在使用 async/await 语法时，有时会这样用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getName</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>)=&gt;</span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">            resolve(<span class="string">'tony'</span>)</span><br><span class="line">        &#125;, <span class="number">2000</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getId</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>)=&gt;</span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">            resolve(<span class="string">'123'</span>)</span><br><span class="line">        &#125;, <span class="number">3000</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">;<span class="function">(<span class="params"><span class="keyword">async</span> (</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> name = <span class="keyword">await</span> getName()</span><br><span class="line">    <span class="keyword">let</span> id = <span class="keyword">await</span> getId()</span><br><span class="line">    alert(<span class="string">`name:<span class="subst">$&#123;name&#125;</span>, id:<span class="subst">$&#123;id&#125;</span>`</span>)</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<p>一眼看上去，应该是3秒种多一点就会 alert 出 ‘name:tony, id:123’，实际上却花费了5秒才出现提示框，她们是串行执行的！而我们想要的是并行执行，因为她们之间并没有依赖关系。串行执行只会白白增加无谓的等待时间！怎么解决呢？  </p>
+<p>我们先看 Promise 的语法：  </p>
+<blockquote>
+<p>new Promise( function(resolve, reject) {…} /<em> executor </em>/ );executor是带有 resolve 和 reject 两个参数的函数 。 Promise构造函数执行时立即 调用executor 函数 ， resolve 和 reject 两个函数作为参数传递给executor（executor 函数在Promise构造函数返回新建对象前被调用）。resolve 和 reject 函数被调用时，分别将promise的状态改为fulfilled（完成）或rejected（失败）。executor 内部通常会执行一些异步操作，一旦完成，可以调用resolve函数来将promise状态改成fulfilled，或者在发生错误时将它的状态改为rejected。</p>
+</blockquote>
+<p>传给 Promise 作为参数的函数会在 new 创建实例时立即调用上面的代码，可以分解成这样：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">;<span class="function">(<span class="params"><span class="keyword">async</span> (</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> namePromise = getName()</span><br><span class="line">    <span class="keyword">let</span> name = <span class="keyword">await</span> namePromise</span><br><span class="line">    <span class="keyword">let</span> idPromise = getId()              <span class="comment">//  2000ms之后才生成 Promise 实例</span></span><br><span class="line">    <span class="keyword">let</span> id = <span class="keyword">await</span> idPromise</span><br><span class="line">    alert(<span class="string">`name:<span class="subst">$&#123;name&#125;</span>, id:<span class="subst">$&#123;id&#125;</span>`</span>)</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<p>所以，如果想并行执行，我们应该先生成所有需要使用的Promise实例：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">;<span class="function">(<span class="params"><span class="keyword">async</span> (</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> namePromise = getName()</span><br><span class="line">    <span class="keyword">let</span> idPromise = getId()              <span class="comment">// 先生成所有 promise 实例</span></span><br><span class="line">    <span class="keyword">let</span> name = <span class="keyword">await</span> namePromise</span><br><span class="line">    <span class="keyword">let</span> id = <span class="keyword">await</span> idPromise</span><br><span class="line">    alert(<span class="string">`name:<span class="subst">$&#123;name&#125;</span>, id:<span class="subst">$&#123;id&#125;</span>`</span>)</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<p>或者使用Promise.all</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">;<span class="function">(<span class="params"><span class="keyword">async</span> (</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="keyword">await</span> <span class="built_in">Promise</span>.all([getName(), getId()])</span><br><span class="line">    alert(<span class="string">`name:<span class="subst">$&#123;result[<span class="number">0</span>]&#125;</span>, id:<span class="subst">$&#123;result[<span class="number">2</span>]&#125;</span>`</span>)</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-02-01T02:28:02.292Z" itemprop="dateUpdated">2019-02-01 10:28:02</time>
+</span><br>
+
+
+        
+        欢迎一起交流，本文链接：<a href="/2019/02/01/async-await里的并行和串行/" target="_blank" rel="external">http://iyue.top/2019/02/01/async-await里的并行和串行/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://iyue.top">
+            <img src="/img/avatar.jpg" alt="萌新">
+            萌新
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2019/02/01/async-await里的并行和串行/&title=《async/await里的并行和串行》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2019/02/01/async-await里的并行和串行/&title=《async/await里的并行和串行》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2019/02/01/async-await里的并行和串行/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《async/await里的并行和串行》 — 山外小楼&url=http://iyue.top/2019/02/01/async-await里的并行和串行/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2019/02/01/async-await里的并行和串行/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/11/23/echarts在vue中获取不到高度的问题/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">echarts在vue中获取不到高度的问题</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        <p><span>萌新 &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2019/02/01/async-await里的并行和串行/&title=《async/await里的并行和串行》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2019/02/01/async-await里的并行和串行/&title=《async/await里的并行和串行》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2019/02/01/async-await里的并行和串行/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《async/await里的并行和串行》 — 山外小楼&url=http://iyue.top/2019/02/01/async-await里的并行和串行/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2019/02/01/async-await里的并行和串行/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACOElEQVR42u3aO27EMAxFUe9/0w6QKkWsuY90Aoi6rgb+6qjgUKSuCx/399G5/+eZ9e/0W5cMGTIOYNzLYz2spzufhvL01NOzZGwyZMg4h7EOmmTQHECGzscmQ4YMGYS0HiJ/gwwZMmS8FXD7SV46ZTJkyJDBF7GkHHbjozZZL6zFZciQsSEjLfT/5+8/7G/IkCFjE8YdHiRd48kcbx58GJUMGTJGM2of4E/VNljwq615kiFDxrYMsqkivYeX3tI7ZciQcQ6DX+ZJYZr28aIeWuLKkCFjKKO2OYwHRF5c48nia3vcZMiQsQnj3S1iPHynaV/rf0OGDBkbMtJEjSRtvCRHQi2aUBkyZIxmvFtd7yR86ZkgNZQhQ8bmDJKc1Qr6ncYnmXUZMmScxuiEv/Un+Saz1oTKkCFjNKMTXmuDCMJoOJUyZMiYyiCDThuTteYl30yG/jdkyJAxiMEbirV2Y+cNtXAsQ4aMeQwe4NJP9hPQ4LsyZMgYzeApGmlkdrZW1Ja7wVJWhgwZ2zJ4mb44Q41wHARlGTJkHMDob3ogU0Amsbj5TIYMGaMZvLDVSSJrZTjOliFDxmzGHR48ueRJYS3E/9KJlSFDxlBG+upaKS1tBpCnZMiQcRqDBFnurjUVeMMA7RaRIUPGUAYv1qdL085Clwd9GTJkyOCBj6eJ6TaOD1MpQ4YMGWHZq1aqS0NtK+DKkCFjQwZJ6cjVzhkepltrcRkyZGzI6BTReMMg/XA6cTJkyBjK+AIQV/oIHtv0OAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '主人还回来吗？';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

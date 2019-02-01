@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>vue使用中问题 | 山外小楼 | 前端攻略</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="前言记录vue在使用中遇到的需要注意的问题 正文 vue-router中路由path值的问题  在嵌套路由使用时，设置path值的时候，注意，如是顶层路由，可以写为/home,即可以加/；在设置二级路由的时候虽然也可以这么写，但就失去了路由层级，在官方文档中有提示：    要注意，以 / 开头的嵌套路径会被当作根路径。 这让你充分的使用嵌套组件而无须设置嵌套的路径。     vue-router中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue使用中问题">
+<meta property="og:url" content="http://iyue.top/2018/10/11/vue使用中问题/index.html">
+<meta property="og:site_name" content="山外小楼">
+<meta property="og:description" content="前言记录vue在使用中遇到的需要注意的问题 正文 vue-router中路由path值的问题  在嵌套路由使用时，设置path值的时候，注意，如是顶层路由，可以写为/home,即可以加/；在设置二级路由的时候虽然也可以这么写，但就失去了路由层级，在官方文档中有提示：    要注意，以 / 开头的嵌套路径会被当作根路径。 这让你充分的使用嵌套组件而无须设置嵌套的路径。     vue-router中">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-11T07:54:16.480Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue使用中问题">
+<meta name="twitter:description" content="前言记录vue在使用中遇到的需要注意的问题 正文 vue-router中路由path值的问题  在嵌套路由使用时，设置path值的时候，注意，如是顶层路由，可以写为/home,即可以加/；在设置二级路由的时候虽然也可以这么写，但就失去了路由层级，在官方文档中有提示：    要注意，以 / 开头的嵌套路径会被当作根路径。 这让你充分的使用嵌套组件而无须设置嵌套的路径。     vue-router中">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">萌新</h5>
+          <a href="mailto:cczyue@qq.com" title="cczyue@qq.com" class="mail">cczyue@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hailinmo" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">vue使用中问题</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display:none">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">vue使用中问题</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-10-11T07:45:52.000Z" itemprop="datePublished" class="page-time">
+  2018-10-11
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#正文"><span class="post-toc-number">2.</span> <span class="post-toc-text">正文</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-vue使用中问题"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">vue使用中问题</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-10-11 15:45:52" datetime="2018-10-11T07:45:52.000Z"  itemprop="datePublished">2018-10-11</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>记录vue在使用中遇到的需要注意的问题</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><ol>
+<li>vue-router中路由path值的问题</li>
+</ol>
+<p>在嵌套路由使用时，设置path值的时候，注意，如是顶层路由，可以写为<code>/home</code>,即可以加<code>/</code>；在设置二级路由的时候虽然也可以这么写，但就失去了路由层级，在<a href="https://router.vuejs.org/zh/guide/essentials/nested-routes.html" target="_blank" rel="noopener">官方文档</a>中有提示：  </p>
+<blockquote>
+<p>要注意，以 / 开头的嵌套路径会被当作根路径。 这让你充分的使用嵌套组件而无须设置嵌套的路径。  </p>
+</blockquote>
+<ol start="2">
+<li>vue-router中路由name值的问题</li>
+</ol>
+<p>在编程导航的时候，我们可以使用path或者name，使用name的时候发现，name的值不可以重复，就算时平行路由各自的子路由也不能重复name，否则导航发生混乱；</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-10-11T07:54:16.480Z" itemprop="dateUpdated">2018-10-11 15:54:16</time>
+</span><br>
+
+
+        
+        欢迎一起交流，本文链接：<a href="/2018/10/11/vue使用中问题/" target="_blank" rel="external">http://iyue.top/2018/10/11/vue使用中问题/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://iyue.top">
+            <img src="/img/avatar.jpg" alt="萌新">
+            萌新
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/10/11/vue使用中问题/&title=《vue使用中问题》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/10/11/vue使用中问题/&title=《vue使用中问题》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/10/11/vue使用中问题/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《vue使用中问题》 — 山外小楼&url=http://iyue.top/2018/10/11/vue使用中问题/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/10/11/vue使用中问题/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/10/12/vue项目在国际化中遇到的问题/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">vue项目在国际化中遇到的问题</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/09/13/常见HTTP状态码解释/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">常见HTTP状态码解释</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        <p><span>萌新 &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/10/11/vue使用中问题/&title=《vue使用中问题》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/10/11/vue使用中问题/&title=《vue使用中问题》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/10/11/vue使用中问题/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《vue使用中问题》 — 山外小楼&url=http://iyue.top/2018/10/11/vue使用中问题/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/10/11/vue使用中问题/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3aQW7DMAwEwPz/0ynQU4Eizi7lFLU8OgVKKmt8YEVSj0c8nt/j5+d85vc4XvPn/MkDAwPjsoz1Rx7/bb5C+ywMDIy7MZIg++r3yYaSZyUrvJzHwMDAOHxMG4JXXgQGBgZGEnDPmskPkRgYGBh5iDwuh7VbPC7VfTAXx8DAuCBj1hj4m88f729gYGD8e8ZzebSrzUpvb9bEwMDYmnF8jEviW5vEzg6jUSDGwMDYmrEU5gLYLPU93vQwI8fAwLggIwlz+UWuWWNg5d8ABgbGfRizI2B+haIN6Hmb4bHyPjAwMC7CyNPFPMjmDYa8/Tkst2FgYGzEaJPJ9kLGytWN+lsMDIztGO1WzrqEkayWV/4xMDD2ZuThNU9rZ/MrzU4MDIz7MPLl2tDZthmSBPhlwMXAwNiOMTuKtcX9trVZtzwxMDBuw5gFvmRzs1Q5L8lhYGDszVhpOp411o+JGBgYezNmgSxvbX6i4/omC8fAwNiOkR/v2lRz5QWttBwwMDB2ZUQlrfKXbRsyuUZWnGExMDC2ZiTHsvzbWYOh3RUGBsYdGLND4SxML4XUpGGAgYGxHWN2hSIvw7XHwVmDEwMDY2/GrJHZbjS/BJY864R+KQYGxgUZs3JY+7ctsk2SMTAw7sBo2wBJIjqbaS95YGBgYOTltpWZNuyeHHAxMDA2YuQlsPbVnFxKw8DA2JTRFs7ySxLP0aiPkhgYGFszZo2Btug2a1u262NgYGzH+AKzUmC+5z5Y8QAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '主人还回来吗？';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
