@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱 | 山外小楼 | 前端攻略</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="作者：蓝博链接：https://juejin.im/post/5c642f2ff265da2de660ecfc来源：掘金  起源2019年1月29日，Chrome72正式版（72.0.3626.81）发布，本次发布带来了一个改变，且没有在更新日志中提及，该改变导致某些网站发生了布局错乱。该改变主要针对的是嵌套的flex布局，下面我们一起看下是怎么回事。 问题首先，我们有一个嵌套的flex布局，代">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱">
+<meta property="og:url" content="http://iyue.top/2019/03/20/Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱/index.html">
+<meta property="og:site_name" content="山外小楼">
+<meta property="og:description" content="作者：蓝博链接：https://juejin.im/post/5c642f2ff265da2de660ecfc来源：掘金  起源2019年1月29日，Chrome72正式版（72.0.3626.81）发布，本次发布带来了一个改变，且没有在更新日志中提及，该改变导致某些网站发生了布局错乱。该改变主要针对的是嵌套的flex布局，下面我们一起看下是怎么回事。 问题首先，我们有一个嵌套的flex布局，代">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://iyue.top/img/flex_001.jpg">
+<meta property="og:image" content="http://iyue.top/img/flex_002.jpg">
+<meta property="og:image" content="http://iyue.top/img/flex_003.jpg">
+<meta property="og:image" content="http://iyue.top/img/flex_004.jpg">
+<meta property="og:image" content="http://iyue.top/img/flex_005.jpg">
+<meta property="og:updated_time" content="2019-03-20T12:35:43.510Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱">
+<meta name="twitter:description" content="作者：蓝博链接：https://juejin.im/post/5c642f2ff265da2de660ecfc来源：掘金  起源2019年1月29日，Chrome72正式版（72.0.3626.81）发布，本次发布带来了一个改变，且没有在更新日志中提及，该改变导致某些网站发生了布局错乱。该改变主要针对的是嵌套的flex布局，下面我们一起看下是怎么回事。 问题首先，我们有一个嵌套的flex布局，代">
+<meta name="twitter:image" content="http://iyue.top/img/flex_001.jpg">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">萌新</h5>
+          <a href="mailto:cczyue@qq.com" title="cczyue@qq.com" class="mail">cczyue@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hailinmo" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display:none">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-20T12:17:50.000Z" itemprop="datePublished" class="page-time">
+  2019-03-20
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#起源"><span class="post-toc-number">1.</span> <span class="post-toc-text">起源</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题"><span class="post-toc-number">2.</span> <span class="post-toc-text">问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#追溯"><span class="post-toc-number">3.</span> <span class="post-toc-text">追溯</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解决方法"><span class="post-toc-number">4.</span> <span class="post-toc-text">解决方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结语"><span class="post-toc-number">5.</span> <span class="post-toc-text">结语</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-20 20:17:50" datetime="2019-03-20T12:17:50.000Z"  itemprop="datePublished">2019-03-20</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>作者：蓝博<br>链接：<a href="https://juejin.im/post/5c642f2ff265da2de660ecfc" target="_blank" rel="noopener">https://juejin.im/post/5c642f2ff265da2de660ecfc</a><br>来源：掘金</p>
+</blockquote>
+<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>2019年1月29日，Chrome72正式版（72.0.3626.81）发布，本次发布带来了一个改变，且没有在更新日志中提及，该改变导致某些网站发生了布局错乱。该改变主要针对的是嵌套的flex布局，下面我们一起看下是怎么回事。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>首先，我们有一个嵌套的flex布局，代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">div &#123;</span></span><br><span class="line"><span class="undefined">    box-sizing: border-box;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.flex &#123;</span></span><br><span class="line"><span class="undefined">    display: flex;</span></span><br><span class="line"><span class="undefined">    flex-direction: column;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.area &#123;</span></span><br><span class="line"><span class="undefined">    padding: 10px;</span></span><br><span class="line"><span class="undefined">    height: 300px;</span></span><br><span class="line"><span class="undefined">    width: 300px;</span></span><br><span class="line"><span class="undefined">    background-color: #3fb9ab;</span></span><br><span class="line"><span class="undefined">    color: #fff;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.item &#123;</span></span><br><span class="line"><span class="undefined">    padding: 10px;</span></span><br><span class="line"><span class="undefined">    flex: 1;</span></span><br><span class="line"><span class="undefined">    background-color: #158c7e;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.nest-item &#123;</span></span><br><span class="line"><span class="undefined">    flex: 1;</span></span><br><span class="line"><span class="undefined">    overflow: auto;</span></span><br><span class="line"><span class="undefined">    background-color: #046b5f;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.content &#123;</span></span><br><span class="line"><span class="undefined">    padding: 10px;</span></span><br><span class="line"><span class="undefined">    height: 600px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"area flex"</span>&gt;</span></span><br><span class="line">    area</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item flex"</span>&gt;</span></span><br><span class="line">        item</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nest-item"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span>content<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>希望实现这样的效果：父容器area有一个指定的高度，且它是一个flex弹性盒子，它内部有一个子元素item，使用 <code>flex: 1</code> 指定了占满剩余空间，且item也是一个flex弹性盒子，它内部还有一个同样占满剩余空间的嵌套子元素nest-item，通过设置 <code>overflow: auto</code> 让它的内容超出后显示滚动条。效果如下：  </p>
+<p><img src="/img/flex_001.jpg" alt="flex示例"></p>
+<p>这样布局的想法很简单，即通过设置弹性盒子子元素的扩展比率，能得到一个自动占满剩余空间高度的容器，再在这个容器中放需要显示的内容，在某些情况下，这确实是一个比较不错的主意，在Chrome72之前都是可以正常显示的。但是Chrome72.0.3626.81中显示如下：  </p>
+<p><img src="/img/flex_002.jpg" alt="flex示例"></p>
+<h2 id="追溯"><a href="#追溯" class="headerlink" title="追溯"></a>追溯</h2><p>为什么会出现这样的问题呢？我们看一下<a href="https://drafts.csswg.org/css-flexbox/#min-size-auto" target="_blank" rel="noopener">规范</a>，flex弹性盒子主轴上子元素的最小大小是内容的大小（视主轴方向为宽或高）。  </p>
+<p>那么我们再看一下上面的例子，area的主轴是纵向的，子元素item的最小高度即是内容的高度，而nest-item被content撑开，content有一个高度（600px，超出了容器的高度），那么item的最小高度也就超过了600px。这样一来，一层层都是被内容撑开，也就没有出现滚动条了，这样似乎是符合规范预期的。  </p>
+<p>在chromium的issue反馈中，有人提到了<a href="https://bugs.chromium.org/p/chromium/issues/detail?id=927066" target="_blank" rel="noopener">这个问题</a>，根据回复，这正是官方为了让Chrome更加符合规范行为而做的调整。也就是说，Chrome72之前的版本，这算是一个没有按照规范行为而出现的bug。新的调整，其实就是让flex弹性盒子的子元素最小高度的默认行为应用 <code>min-height: min-content</code> ，就像官方回复中提到的那样，让子元素作为flex弹性盒子时却和普通盒子处理方式不同是会让人困惑的。  </p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>既然知道了原因，那么如果我们还想使用这样的布局方式，该怎么做呢？</p>
+<p>对的，我们给item指定一个最小高度，让它不使用默认的行为（即内容的高度），一般我们指定最小高度为0 <code>min-height: 0</code>。给item加上这个样式后，我们再看一下效果：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/img/flex_003.jpg" alt="flex示例" title="">
+                </div>
+                <div class="image-caption">flex示例</div>
+            </figure>
+<p>嗯，已经符合我们的预期了。为了验证规范中提到的对主轴方向的行为，我们修改一下代码，将主轴设置为水平方向试试，代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">div &#123;</span></span><br><span class="line"><span class="undefined">    box-sizing: border-box;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.flex &#123;</span></span><br><span class="line"><span class="undefined">    display: flex;</span></span><br><span class="line"><span class="undefined">    flex-direction: row;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.area &#123;</span></span><br><span class="line"><span class="undefined">    padding: 10px;</span></span><br><span class="line"><span class="undefined">    height: 300px;</span></span><br><span class="line"><span class="undefined">    width: 300px;</span></span><br><span class="line"><span class="undefined">    background-color: #3fb9ab;</span></span><br><span class="line"><span class="undefined">    color: #fff;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.item &#123;</span></span><br><span class="line"><span class="undefined">    padding: 10px;</span></span><br><span class="line"><span class="undefined">    flex: 1;</span></span><br><span class="line"><span class="undefined">    background-color: #158c7e;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.nest-item &#123;</span></span><br><span class="line"><span class="undefined">    flex: 1;</span></span><br><span class="line"><span class="undefined">    overflow: auto;</span></span><br><span class="line"><span class="undefined">    background-color: #046b5f;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.content &#123;</span></span><br><span class="line"><span class="undefined">    padding: 10px;</span></span><br><span class="line"><span class="undefined">    width: 600px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"area flex"</span>&gt;</span></span><br><span class="line">    area</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item flex"</span>&gt;</span></span><br><span class="line">        item</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nest-item"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span>content<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>效果如下：  </p>
+<p><img src="/img/flex_004.jpg" alt="flex示例"></p>
+<p>看来主轴为水平方向时，是符合规范预期行为的（Chrome72及以前的版本都符合），那么我们给item加上一句样式 <code>min-width: 0</code> ，效果如下：  </p>
+<p><img src="/img/flex_005.jpg" alt="flex示例"></p>
+<p>嗯，是符合我们预期的。  </p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>好了，现在你已经知道是怎么一回事了，可是等等，你说你升级到Chrome72没有发现我说的问题？  </p>
+<p>那是因为官方注意到这个修改会影响到一些网站的正常显示，因此在2019年2月6日（正是春节假期间）发布的Chrome72.0.3626.96中，将<a href="https://chromium.googlesource.com/chromium/src/+/032ef9666487db1d04b656a095b041de8c6d2b63" target="_blank" rel="noopener">这个问题</a>还原回以前的行为了。  </p>
+<p>官方的意思是为了避免这个修改给某些网站带来的不好的影响，因此预留时间给大家修改，等到Chrome73将会发布这一改变。所以为了未来更好的浏览体验，检查一下你的页面吧！</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-03-20T12:35:43.510Z" itemprop="dateUpdated">2019-03-20 20:35:43</time>
+</span><br>
+
+
+        
+        欢迎一起交流，本文链接：<a href="/2019/03/20/Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱/" target="_blank" rel="external">http://iyue.top/2019/03/20/Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://iyue.top">
+            <img src="/img/avatar.jpg" alt="萌新">
+            萌新
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2019/03/20/Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱/&title=《Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2019/03/20/Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱/&title=《Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2019/03/20/Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱》 — 山外小楼&url=http://iyue.top/2019/03/20/Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2019/03/20/Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/02/01/async-await里的并行和串行/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">async/await里的并行和串行</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        <p><span>萌新 &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2019/03/20/Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱/&title=《Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2019/03/20/Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱/&title=《Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2019/03/20/Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱》 — 山外小楼&url=http://iyue.top/2019/03/20/Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2019/03/20/Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADMklEQVR42u3ay47jSAwEQP//T/de5jADrOVM0gZa5dDJ8KOkkA5pkvV4xMfPX8f1O8lvn30/We3Z+o9PHNjY2Ng3Yf9cHs8uKPn0+lfvev/67M/WwcbGxj6PfR0MT38cfD8BtGGWPJ4XRmxsbOwvZid//fcxkxQ22NjY2NgtO4+3WRNqFpnY2NjY2Hmc5DF2HV2bQJpdJzY2NvbZ7HaY+ptff2S+jY2Njf2L2T+jYzagbYufT1z5n/WxsbGxD2K3IZFvzUnaRrPR8ubBYGNjY5/Kvr6szVabpKGfvN+OLlaVFjY2Nvat2PnJ2njYbNbJIzPZ1vM/LmxsbOyD2PkmmE02ttQ2XPPyqYg0bGxs7Juw26Z/XiS0t292u2ebjbCxsbHPY+fL5byk/TQLudmQ4DF7YtjY2Ng3YW/Cabhdphwet4OKF6+xsbGxj2O3S7dD1nZDTztabjf9YGNjY5/Eblsz7QnyFZJ2/3vLJGxsbOyT2Jttjm3rp72sWZhhY2Njfw87obZ/99s1Z+OE1agYGxsb+1B2EjNtyLVB1Y4H2gIGGxsb+zz2LB72g9t2hbwUyR8PNjY29kns2dKboqWNxtm2nmjQi42NjX0Ee/+Hvj3ZDLPfPISNjY39bezkdrTbetrryT8djiiwsbGxb87OI+FdzZ39+/kY40XthY2NjX0oOy8A2o2P7ZrvvUH/fIqNjY19ELtoo48GsfnGnTcw2lYXNjY29kHsWYmS96tmxcPsNrUPCRsbG/vu7LYAaIuKvBW1HzMXMYmNjY19KHvVcA+aPpstOLPxQJHP2NjY2Ldl7y+03d84C6r2dkTBjI2NjX0EOw+tJGBW937RFcvLpEd+t7CxsbFvwm7jIW/uJMPXN8804nEvNjY29knsn/Jot8UkRUUblrPWWNHTwsbGxr4Vu42B64vOIy0vafarbcIPGxsb+y7sPEI2RUgSYO/9zouCBxsbG/s4dtGFCiItbyS1v9pHLzY2NvY3s/Pmflt47AOpHidgY2NjfyW7HfomF5QH2KaxhY2Njf0N7E1Tqb1N+zJjFl1v7qVhY2Nj/xp2e5pZE39f0nyi5YSNjY19c/Z/h3pPAuC71NMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '主人还回来吗？';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
