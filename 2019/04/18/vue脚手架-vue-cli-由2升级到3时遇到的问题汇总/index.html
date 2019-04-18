@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>vue脚手架(vue-cli)由2升级到3时遇到的问题汇总 | 山外小楼 | 前端攻略</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="问题近期将项目的 vue 脚手架由 2 升级到了 3，在此过程中遇到的一些问题记录如下 案例 vue 挂载方式改变  123456789101112//原方式new Vue(&amp;#123;  el: &apos;#app&apos;,  router,  template: &apos;&amp;lt;App/&amp;gt;&apos;,  components: &amp;#123; App &amp;#125;&amp;#125;)// 现改为new Vue(&amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue脚手架(vue-cli)由2升级到3时遇到的问题汇总">
+<meta property="og:url" content="http://iyue.top/2019/04/18/vue脚手架-vue-cli-由2升级到3时遇到的问题汇总/index.html">
+<meta property="og:site_name" content="山外小楼">
+<meta property="og:description" content="问题近期将项目的 vue 脚手架由 2 升级到了 3，在此过程中遇到的一些问题记录如下 案例 vue 挂载方式改变  123456789101112//原方式new Vue(&amp;#123;  el: &apos;#app&apos;,  router,  template: &apos;&amp;lt;App/&amp;gt;&apos;,  components: &amp;#123; App &amp;#125;&amp;#125;)// 现改为new Vue(&amp;#123;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-18T12:36:48.071Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue脚手架(vue-cli)由2升级到3时遇到的问题汇总">
+<meta name="twitter:description" content="问题近期将项目的 vue 脚手架由 2 升级到了 3，在此过程中遇到的一些问题记录如下 案例 vue 挂载方式改变  123456789101112//原方式new Vue(&amp;#123;  el: &apos;#app&apos;,  router,  template: &apos;&amp;lt;App/&amp;gt;&apos;,  components: &amp;#123; App &amp;#125;&amp;#125;)// 现改为new Vue(&amp;#123;">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">萌新</h5>
+          <a href="mailto:cczyue@qq.com" title="cczyue@qq.com" class="mail">cczyue@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hailinmo" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">vue脚手架(vue-cli)由2升级到3时遇到的问题汇总</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display:none">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">vue脚手架(vue-cli)由2升级到3时遇到的问题汇总</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-18T11:50:24.000Z" itemprop="datePublished" class="page-time">
+  2019-04-18
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#案例"><span class="post-toc-number">2.</span> <span class="post-toc-text">案例</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-vue脚手架-vue-cli-由2升级到3时遇到的问题汇总"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">vue脚手架(vue-cli)由2升级到3时遇到的问题汇总</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-18 19:50:24" datetime="2019-04-18T11:50:24.000Z"  itemprop="datePublished">2019-04-18</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>近期将项目的 vue 脚手架由 2 升级到了 3，在此过程中遇到的一些问题记录如下</p>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><ol>
+<li>vue 挂载方式改变</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原方式</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router,</span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">  components: &#123; App &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 现改为</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  router,</span><br><span class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;).$mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>HTML 标签之间的间隙默认被删除，表现为原来在页面上内联元素之间因换行产生的空隙没有了</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 由于原项目并没有处理空隙，而且利用了空隙，为保持表现一致，可添加如下配置</span></span><br><span class="line">chainWebpack: <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">  config.module</span><br><span class="line">    .rule(<span class="string">'vue'</span>)</span><br><span class="line">    .use(<span class="string">'vue-loader'</span>)</span><br><span class="line">    .loader(<span class="string">'vue-loader'</span>)</span><br><span class="line">    .tap(<span class="function"><span class="params">options</span> =&gt;</span> &#123;</span><br><span class="line">      options.compilerOptions.preserveWhitespace = <span class="literal">true</span></span><br><span class="line">      <span class="keyword">return</span> options</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3. </p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-04-18T12:36:48.071Z" itemprop="dateUpdated">2019-04-18 20:36:48</time>
+</span><br>
+
+
+        
+        欢迎一起交流，本文链接：<a href="/2019/04/18/vue脚手架-vue-cli-由2升级到3时遇到的问题汇总/" target="_blank" rel="external">http://iyue.top/2019/04/18/vue脚手架-vue-cli-由2升级到3时遇到的问题汇总/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://iyue.top">
+            <img src="/img/avatar.jpg" alt="萌新">
+            萌新
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2019/04/18/vue脚手架-vue-cli-由2升级到3时遇到的问题汇总/&title=《vue脚手架(vue-cli)由2升级到3时遇到的问题汇总》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2019/04/18/vue脚手架-vue-cli-由2升级到3时遇到的问题汇总/&title=《vue脚手架(vue-cli)由2升级到3时遇到的问题汇总》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2019/04/18/vue脚手架-vue-cli-由2升级到3时遇到的问题汇总/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《vue脚手架(vue-cli)由2升级到3时遇到的问题汇总》 — 山外小楼&url=http://iyue.top/2019/04/18/vue脚手架-vue-cli-由2升级到3时遇到的问题汇总/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2019/04/18/vue脚手架-vue-cli-由2升级到3时遇到的问题汇总/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/20/Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Chrome72嵌套flex布局修改，你的网站可能会发生布局错乱</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        <p><span>萌新 &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2019/04/18/vue脚手架-vue-cli-由2升级到3时遇到的问题汇总/&title=《vue脚手架(vue-cli)由2升级到3时遇到的问题汇总》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2019/04/18/vue脚手架-vue-cli-由2升级到3时遇到的问题汇总/&title=《vue脚手架(vue-cli)由2升级到3时遇到的问题汇总》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2019/04/18/vue脚手架-vue-cli-由2升级到3时遇到的问题汇总/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《vue脚手架(vue-cli)由2升级到3时遇到的问题汇总》 — 山外小楼&url=http://iyue.top/2019/04/18/vue脚手架-vue-cli-由2升级到3时遇到的问题汇总/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2019/04/18/vue脚手架-vue-cli-由2升级到3时遇到的问题汇总/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADO0lEQVR42u3azW6lMAwG0Pv+L31n08VIM9DPdpAgHFYVpSQnXRj/fD7x9f3rmj/5PbiOnvz35+qumhc2Njb2Q9jf0ytZ8vyvendy6tHbfjlWbGxs7O3YSfBoLhDEjnPkebg6f8PhfWxsbOzXs5OUoHonP7IkmGFjY2NjVz/3q4zepnsrYmNjY7+BnZeHeiWnnDo5rEtqadjY2Ni3Z+dd0fv/fEl/GxsbG/vG7G/rij70ixvqhZnm/rGxsbE3YleDxOQIkgOaFJjKaQ82Njb2Fux5YagX6pIt9tKP6D42Njb2Rux5Sb03ZHN+BNUhoeRvD1MRbGxs7IezeyFkbck+f0O+t6izjY2Njb0Re/EnfrENkAShXsoUJSHY2NjYG7HzAFBNVKobzYNcs+WAjY2NvRF71avzxXpHtraNgY2Njb0Te9KarQ7TJLlADusdHDY2Nvau7FUbnScV1USiOeiDjY2NvR27FzCS8JM3YnsN5jzoHs4oYWNjY2/Hrm5i0mCYj+bkRa5RtxkbGxv7xux8mWrKUS085S3barCMWrzY2NjYW7CrYSwvA+XBb4LPV8fGxsbelV0tzSTFpnILttgkyN/wyX+BjY2N/Sh2/nGft1fzIlEehHoH+qlGWmxsbOwHsvNhnd7z1WQmByTpTSGMYWNjYz+cXf3onyQYvTbtvFA1iuHY2NjYN2Ynm1uVqOTjPtclPNjY2Nh7s6ul9l6gqg7cJP+SXPFzBxsbG3s7dl6m6ZWEkqGc/Jh6Iz7Y2NjYb2bnpf9kc73RnGTFQgsZGxsbe1N2vpXkTvWY8ueTQlIhgGFjY2M/nF0NHtXxnV66Um0wJMf0n3diY2Njb8GeB7C8AHRdOMzXxcbGxt6P3dtitQBULfpXA2EhVlcHd7CxsbFvz+6Nv/Se7IW6yfAQNjY29hvYk2CQN2LzRnJe+q8GyyYeGxsb+yHseQFonrpM0pL8+VFRCRsbG/v27F5gqB5BHpBWFZt+aQ9gY2Njv4zdG6NJwtja0lIUDrGxsbFfyU4CW7U8VG0eT47mk8dPbGxs7Aey17ZsV7Va5+nH4loaNjY29i3Z1eV7R3NFF/o8gC0b2cHGxsa+L/sPtmK1qST4YzEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '主人还回来吗？';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
