@@ -142,6 +142,45 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-js中函数的防抖-debounce-与节流-throttle"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-05-22 20:37:27" datetime="2019-05-22T12:37:27.000Z"  itemprop="datePublished">2019-05-22</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/05/22/js中函数的防抖-debounce-与节流-throttle/">js中函数的防抖(debounce)与节流(throttle)</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        问题在绑定 scroll 、resize 这类事件时，当它发生时，它被触发的频次非常高，间隔很近。如果事件中涉及到大量的位置计算、DOM 操作、元素重绘等工作且这些工作无法在下一个 scroll 事件触发前完成，就会造成浏览器掉帧。加之用户鼠标滚动往往是连续的，就会持续触发 scroll 事件导致掉帧扩大、浏览器 CPU 使用率增加、用户体验受到影响。尤其是在涉及与后端的交互中，前端依赖于某...
+    
+
+        <a href="/2019/05/22/js中函数的防抖-debounce-与节流-throttle/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-vue脚手架-vue-cli-由2升级到3时遇到的问题汇总"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -542,56 +581,6 @@ XSS攻击通常被分为两类：存储型和反射型。还有第三类，和�
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XSS/">XSS</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-单点登录的实现方式"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-09-06 21:02:01" datetime="2018-09-06T13:02:01.000Z"  itemprop="datePublished">2018-09-06</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/09/06/单点登录的实现方式/">单点登录的实现方式</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        该篇文章很多段落来自单点登录原理与简单实现，大家可以先拜读这篇文章，这篇文章讲述十分详细，我这里只是插了一些自己的疑虑，而且可能还说的不是很清楚，权当自己做个笔记了
-单系统登录机制
-http无状态协议
-
-http作为通信协议，是无状态的，浏览器的每一次请求，服务器会独立处理，不与之前或之后的请求产生关联。  
-但这也同时意味着，任何用户都能通过浏览器访问服务器资源，如果想保护服务器的某些资源...
-    
-
-        <a href="/2018/09/06/单点登录的实现方式/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cookie/">cookie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/session/">session</a></li></ul>
 
     </div>
     
