@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>JS的属性描述符 | 山外小楼 | 前端攻略</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="默认创建对象时属性为数据属性 数据属性字面量创建属性时默认为 123456&amp;#123;  value: undefined,  writable: true,  enumerable: true,  configurable: true&amp;#125; Object.defineProperty方法创建属性时默认为 123456&amp;#123;  value: undefined,  writable:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS的属性描述符">
+<meta property="og:url" content="http://iyue.top/2019/12/16/JS的属性描述符/index.html">
+<meta property="og:site_name" content="山外小楼">
+<meta property="og:description" content="默认创建对象时属性为数据属性 数据属性字面量创建属性时默认为 123456&amp;#123;  value: undefined,  writable: true,  enumerable: true,  configurable: true&amp;#125; Object.defineProperty方法创建属性时默认为 123456&amp;#123;  value: undefined,  writable:">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-16T09:35:30.604Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS的属性描述符">
+<meta name="twitter:description" content="默认创建对象时属性为数据属性 数据属性字面量创建属性时默认为 123456&amp;#123;  value: undefined,  writable: true,  enumerable: true,  configurable: true&amp;#125; Object.defineProperty方法创建属性时默认为 123456&amp;#123;  value: undefined,  writable:">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">萌新</h5>
+          <a href="mailto:cczyue@qq.com" title="cczyue@qq.com" class="mail">cczyue@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hailinmo" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JS的属性描述符</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display:none">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JS的属性描述符</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-16T07:21:16.000Z" itemprop="datePublished" class="page-time">
+  2019-12-16
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据属性"><span class="post-toc-number">1.</span> <span class="post-toc-text">数据属性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#访问器属性"><span class="post-toc-number">2.</span> <span class="post-toc-text">访问器属性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方法"><span class="post-toc-number">3.</span> <span class="post-toc-text">方法</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-JS的属性描述符"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JS的属性描述符</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-12-16 15:21:16" datetime="2019-12-16T07:21:16.000Z"  itemprop="datePublished">2019-12-16</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>默认创建对象时属性为数据属性</p>
+<h2 id="数据属性"><a href="#数据属性" class="headerlink" title="数据属性"></a>数据属性</h2><p>字面量创建属性时默认为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  value: <span class="literal">undefined</span>,</span><br><span class="line">  writable: <span class="literal">true</span>,</span><br><span class="line">  enumerable: <span class="literal">true</span>,</span><br><span class="line">  configurable: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Object.defineProperty方法创建属性时默认为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  value: <span class="literal">undefined</span>,</span><br><span class="line">  writable: <span class="literal">false</span>,</span><br><span class="line">  enumerable: <span class="literal">false</span>,</span><br><span class="line">  configurable: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以使用<code>Object.getOwnPropertyDescriptor</code>或<code>Object.getOwnPropertyDescriptors</code>方法来获取对象属性的描述符信息；</p>
+<ol>
+<li><code>configurable</code>为<code>false</code>,<code>writable</code>为<code>true</code>时，可通过<code>赋值</code>的方式或者<code>Object.defineProperty</code>的方式修改value值；</li>
+<li><code>configurable</code>为<code>false</code>,<code>writable</code>为<code>false</code>时，只能通过<code>Object.defineProperty</code>的方式修改value值；</li>
+<li><code>configurable</code>为<code>false</code>,<code>writable</code>为<code>true</code>时，可将wirtable设置为false；</li>
+<li><code>configurable</code>为<code>false</code>,<code>writable</code>为<code>false</code>时，<code>无法修改</code>wirtable的值；</li>
+<li><code>configurable</code>为<code>false</code>后，也<code>无法修改</code>为true；</li>
+</ol>
+<h2 id="访问器属性"><a href="#访问器属性" class="headerlink" title="访问器属性"></a>访问器属性</h2><p>字面量创建访问器属性为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj=&#123;</span><br><span class="line">  get a() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Object.defineProperty方法创建访问器属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj=&#123;&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">'a'</span> ,&#123;</span><br><span class="line">  get() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>默认值为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  get: <span class="literal">undefined</span>,</span><br><span class="line">  set: <span class="literal">undefined</span>,</span><br><span class="line">  enumerable: <span class="literal">true</span>,</span><br><span class="line">  configurable: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ol>
+<li><p>为目标对象设置单个属性<br>设置单个属性可以使用<code>Object.defineProperty()</code>方法，要注意的是，对于同一个属性，不可以同时在描述符中指定属于数据描述符的value，writable和属于访问器描述符的get，set，否则会报错。</p>
+</li>
+<li><p>为目标对象设置多个属性<br>设置多个属性可以使用<code>Object.defineProperties()</code>方法。</p>
+</li>
+<li><p>禁止目标对象扩展（不允许添加新属性<br>禁止添加新属性可以使用<code>Object.preventExtensions()</code>方法，该方法接收一个目标对象传入，使用后该对象禁止添加新属性。使该对象禁止扩展。</p>
+</li>
+<li><p>密封目标对象（不允许扩展且不允许进行属性配置）<br>我们可以使用<code>Object.seal()</code> 方法创建一个“密封”的对象，这个方法实际上会在一个现有对象上调用 Object.preventExtensions()方法 并把所有现有属性标记为configurable:false。密封之后不仅不能添加新属性，也不能重新配置或者删除任何现有属性(但是可以修改属性的值)</p>
+</li>
+<li><p>冻结目标对象（密封对象且不允许修改）<br><code>Object.freeze(..)</code> 会创建一个冻结对象，这个方法实际上会在一个现有对象上调用 <code>Object.seal(..)</code> 并把所有“数据访问”属性标记为 writable:false，这样就无法修改它们的值。</p>
+</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-16T09:35:30.604Z" itemprop="dateUpdated">2019-12-16 17:35:30</time>
+</span><br>
+
+
+        
+        欢迎一起交流，本文链接：<a href="/2019/12/16/JS的属性描述符/" target="_blank" rel="external">http://iyue.top/2019/12/16/JS的属性描述符/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://iyue.top">
+            <img src="/img/avatar.jpg" alt="萌新">
+            萌新
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2019/12/16/JS的属性描述符/&title=《JS的属性描述符》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2019/12/16/JS的属性描述符/&title=《JS的属性描述符》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2019/12/16/JS的属性描述符/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS的属性描述符》 — 山外小楼&url=http://iyue.top/2019/12/16/JS的属性描述符/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2019/12/16/JS的属性描述符/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/07/26/页面滚动条的相关属性概念/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">页面滚动条的相关属性概念</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        <p><span>萌新 &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2019/12/16/JS的属性描述符/&title=《JS的属性描述符》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2019/12/16/JS的属性描述符/&title=《JS的属性描述符》 — 山外小楼&source=我是萌新" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2019/12/16/JS的属性描述符/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS的属性描述符》 — 山外小楼&url=http://iyue.top/2019/12/16/JS的属性描述符/&via=http://iyue.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2019/12/16/JS的属性描述符/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIElEQVR42u3aSW7DMBAEQP//0w6QqyGleygHEFU8GbITqngYzMLXK17v3/X55HOdf/v5f45+//rGwsDAuC0j2fLoyfpxnDOK48DAwHgA43zLWcA9+rx+WBgYGBj59i0jz+gwMDAwVhjfKIwxMDAwEsYs8J0njm0r7Z9qcQwMjBsyZsHxfz5/cb6BgYFxE8b70jVr9K+/CQYGxt6MNo07f56kem0iWAwMMDAwtmZcNRLIU731kviCfh4GBsZtGbMWW1t25sgkZGNgYDyNkQfZWSqZJHmXHR8GBsZGjLw0bcvXdsCQfBtNYjEwMDZltJcbZkVs8uptsw8DAwNjFjTbixT5UPOC+QYGBsatGHlClhS65+ljG0Dz0IyBgfEExkp/bhZwZyPPwxIaAwNja0aehOWlbDuYbAFR1xADA2MjxvoocdY+y59HaSUGBsbWjPyyxaz4nF3gSK6UYWBgPI2x0tBfGWom6ePwzggGBsZGjHxgOWufrTfjorCOgYGxNWNloDhLB/PXzY8VAwNjb0be7m8b/SuNtrqQxsDA2JrRNv3by1vtYDJvt73yn2JgYNyc8S5X24ZrYcOEEgMDY2tGvmbp42wY2R4TBgbGExgrxWe7WTuKKP4WAwPjAYy2QG1fbn39UfpiYGBgxGXteXo3O5rimgUGBsbjGbPLGes8DAwMjPVLErMQmRe00V4YGBhbM9rBQEtaH0+2DT4MDIyNGD8x8VvRKt7gEgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '主人还回来吗？';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
