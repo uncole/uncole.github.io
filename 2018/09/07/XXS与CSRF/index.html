@@ -22,17 +22,18 @@
     
     <meta name="keywords" content="XSS,CSRF">
     <meta name="description" content="引言针对前端安全，主要有XSS跨站脚本攻击，CSRF跨站伪造请求，SQL注入等，今天主要讨论下关于前两种 XSS跨站脚本攻击更多具体详细的解释可以查看XSS（跨站脚本攻击）的最全总结 XSS攻击通常被分为两类：存储型和反射型。还有第三类，和基于DOM的xss；下面我们不说定义直接看看怎么操作  反射型  一般有搜索框的网站，在搜索东西的时候会在结果页呈现你搜索的字符； 比如你搜索笔记本电脑，网站会">
-<meta name="keywords" content="XSS,CSRF">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XSS与CSRF">
-<meta property="og:url" content="http://iyue.top/2018/09/07/XXS与CSRF/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;iyue.top&#x2F;2018&#x2F;09&#x2F;07&#x2F;XXS%E4%B8%8ECSRF&#x2F;index.html">
 <meta property="og:site_name" content="山外小楼">
 <meta property="og:description" content="引言针对前端安全，主要有XSS跨站脚本攻击，CSRF跨站伪造请求，SQL注入等，今天主要讨论下关于前两种 XSS跨站脚本攻击更多具体详细的解释可以查看XSS（跨站脚本攻击）的最全总结 XSS攻击通常被分为两类：存储型和反射型。还有第三类，和基于DOM的xss；下面我们不说定义直接看看怎么操作  反射型  一般有搜索框的网站，在搜索东西的时候会在结果页呈现你搜索的字符； 比如你搜索笔记本电脑，网站会">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-08T05:04:00.141Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-09-07T12:18:20.000Z">
+<meta property="article:modified_time" content="2018-09-08T05:04:00.141Z">
+<meta property="article:author" content="萌新">
+<meta property="article:tag" content="XSS">
+<meta property="article:tag" content="CSRF">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XSS与CSRF">
-<meta name="twitter:description" content="引言针对前端安全，主要有XSS跨站脚本攻击，CSRF跨站伪造请求，SQL注入等，今天主要讨论下关于前两种 XSS跨站脚本攻击更多具体详细的解释可以查看XSS（跨站脚本攻击）的最全总结 XSS攻击通常被分为两类：存储型和反射型。还有第三类，和基于DOM的xss；下面我们不说定义直接看看怎么操作  反射型  一般有搜索框的网站，在搜索东西的时候会在结果页呈现你搜索的字符； 比如你搜索笔记本电脑，网站会">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="/css/style.css?v=1.7.2">
@@ -41,7 +42,7 @@
     <!-- custom head -->
     
 
-</head>
+<meta name="generator" content="Hexo 4.1.1"></head>
 
 <body>
     <div id="loading" class="active"></div>
@@ -214,7 +215,7 @@
 
 
         
-        欢迎一起交流，本文链接：<a href="/2018/09/07/XXS与CSRF/" target="_blank" rel="external">http://iyue.top/2018/09/07/XXS与CSRF/</a>
+        欢迎一起交流，本文链接：<a href="/2018/09/07/XXS%E4%B8%8ECSRF/" target="_blank" rel="external">http://iyue.top/2018/09/07/XXS%E4%B8%8ECSRF/</a>
         
     </div>
     
@@ -231,7 +232,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XSS/">XSS</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSRF/" rel="tag">CSRF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XSS/" rel="tag">XSS</a></li></ul>
 
 
             
@@ -241,7 +242,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/07/XXS与CSRF/&title=《XSS与CSRF》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/07/XXS%E4%B8%8ECSRF/&title=《XSS与CSRF》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -251,22 +252,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/07/XXS与CSRF/&title=《XSS与CSRF》 — 山外小楼&source=我是萌新" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/07/XXS%E4%B8%8ECSRF/&title=《XSS与CSRF》 — 山外小楼&source=我是萌新" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/07/XXS与CSRF/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/07/XXS%E4%B8%8ECSRF/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《XSS与CSRF》 — 山外小楼&url=http://iyue.top/2018/09/07/XXS与CSRF/&via=http://iyue.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《XSS与CSRF》 — 山外小楼&url=http://iyue.top/2018/09/07/XXS%E4%B8%8ECSRF/&via=http://iyue.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/07/XXS与CSRF/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/07/XXS%E4%B8%8ECSRF/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -289,7 +290,7 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2018/09/13/网址最后的斜杠问题/" id="post-prev" class="post-nav-link">
+      <a href="/2018/09/13/%E7%BD%91%E5%9D%80%E6%9C%80%E5%90%8E%E7%9A%84%E6%96%9C%E6%9D%A0%E9%97%AE%E9%A2%98/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
         <h4 class="title">网址最后的斜杠问题</h4>
       </a>
@@ -298,7 +299,7 @@
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/09/06/单点登录的实现方式/" id="post-next" class="post-nav-link">
+      <a href="/2018/09/06/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">单点登录的实现方式</h4>
       </a>
@@ -338,7 +339,7 @@
 
         <p>
             
-            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div> -->
     <div class="bottom">
@@ -360,7 +361,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/07/XXS与CSRF/&title=《XSS与CSRF》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/07/XXS%E4%B8%8ECSRF/&title=《XSS与CSRF》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -370,22 +371,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/07/XXS与CSRF/&title=《XSS与CSRF》 — 山外小楼&source=我是萌新" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/07/XXS%E4%B8%8ECSRF/&title=《XSS与CSRF》 — 山外小楼&source=我是萌新" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/07/XXS与CSRF/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/07/XXS%E4%B8%8ECSRF/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《XSS与CSRF》 — 山外小楼&url=http://iyue.top/2018/09/07/XXS与CSRF/&via=http://iyue.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《XSS与CSRF》 — 山外小楼&url=http://iyue.top/2018/09/07/XXS%E4%B8%8ECSRF/&via=http://iyue.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/07/XXS与CSRF/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/07/XXS%E4%B8%8ECSRF/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -396,7 +397,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABw0lEQVR42u3aQW7DMAwEwPz/0+4DWrtLUlKNYnQqEtUZXwhqxc8nXtfj+r7n7gnJzgULFxd3zO1Rkh97fs7z57evhIuLe5CblJ67/ddg5QZcXNw3c5PilXyLi4v7n7i9kpS0Pri4uG/j5ogdxC1nNVxc3AG32rjs+HtLvouLi9vi9iKMXjA6D1NwcXHPcHsNSvLD1XansBMXF/cI9/mL6oVr7wnll8fFxd3GnY9Y9a5PmtexuLi4R7iTtqY6itGLTQsBCi4u7gZusun5k16By49VuLi4Z7h5qUoaoOrxqTywhYuLe5zbi0J67Ut1IOyHQoaLi7uZ24s1qyMaedhx+2K4uLgHuXnk0Rue6IWnhbqLi4u7lDt/UN6sTMYvRvczuLi4LW7yz9Urz+eSlN/q/DKEgYuLe4Tbu42ZHHvKASsuLu5BblKwEkr1mdVDFy4u7m7uVVz5XWe1YEWxLC4u7hFuvlYFoPlQV+86BxcXdxW3d0SpxqOTdqpQfXFxcZdyq4UmaX3yohYNZuHi4r6emxSpSZO0rF7i4uL+ETcpZ5PBi8WFDBcXN+auDUmrsQguLu7buHlgmheyXuySN0a4uLjbuF9/GEjnCsTdlgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3ay26FMAxFUf7/p6nUaZt0H7tcCWdnVHEpYTGw/Mh14XV/r9X1n4v/urrzemLJkCHjtYx7u1ZbPvEEwltSZciQcQBjH2RJECThMg245N1kyJAhY/WK/CX6KaMMGTJkpAG3lvCRTyNDhgwZe8ZnGmcp7JFaXIYMGS9kpIOBT/794HxDhgwZL2HcjZUOCUh6V3wTGTJkjGbwhn7a3E+PaHSeJkOGjHMYnMfbZKSgrR0OWwZcGTJkjGPsH5RumTbXSBhFaaUMGTJGM9JUj8D6BWo6MJAhQ8ZsRloopqlb7Xpa+sqQIeMcRq3FnyaX/QbfHwFXhgwZ4xjBTfgVa+lmesBChgwZ5zD2BSQpMvmVGgbdKUOGjAMYPBWrnW0gSecVrl8CrgwZMoYy0rBYGxv0PwpKH2XIkDGUUStWa8GXp4xkRxkyZJzGSMMcGRjUkrziiFSGDBmjGfuEr5b2pVTe7ENHLmTIkDGUkbb1SRCsHQvrj0JlyJAxlfFcE62W/JGAi76iDBkyxjE6A4C0VUdIpIhdjjBlyJAxjsH/rTYkKLb7a4WxDBkyxjHucP3vCIGE+DgplCFDxjhGGuxIKtk5nEF4nZAtQ4aM9zJIkO0z9oMH0tQLzrjJkCFjKKMzkuQbp8E3KH1lyJAhA7fpeXglgwEepmXIkCGDbJaOPB+ss2XIkDGU0QmXPPnjI4c06MuQIWM2ozYY4B+lVhinH1qGDBlDGV+KJmqYKMDWGgAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 

@@ -21,18 +21,20 @@
     
     
     <meta name="keywords" content="django,http,post">
-    <meta name="description" content="前言HTTP/1.1 协议规定的 HTTP 请求方法有 OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE、CONNECT 这几种。其中 POST 一般用来向服务端提交数据，本文主要讨论 POST 提交数据的几种方式。我们知道，HTTP 协议是以 ASCII 码传输，建立在 TCP/IP 协议之上的应用层规范。规范把 HTTP 请求分为三个部分：状态行、请求头、消息主体。">
-<meta name="keywords" content="django,http,post">
+    <meta name="description" content="前言HTTP&#x2F;1.1 协议规定的 HTTP 请求方法有 OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE、CONNECT 这几种。其中 POST 一般用来向服务端提交数据，本文主要讨论 POST 提交数据的几种方式。我们知道，HTTP 协议是以 ASCII 码传输，建立在 TCP&#x2F;IP 协议之上的应用层规范。规范把 HTTP 请求分为三个部分：状态行、请求头、消息主体。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="post请求的提交数据的几种方式">
-<meta property="og:url" content="http://iyue.top/2018/09/05/post请求的提交数据的几种方式/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;iyue.top&#x2F;2018&#x2F;09&#x2F;05&#x2F;post%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F&#x2F;index.html">
 <meta property="og:site_name" content="山外小楼">
-<meta property="og:description" content="前言HTTP/1.1 协议规定的 HTTP 请求方法有 OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE、CONNECT 这几种。其中 POST 一般用来向服务端提交数据，本文主要讨论 POST 提交数据的几种方式。我们知道，HTTP 协议是以 ASCII 码传输，建立在 TCP/IP 协议之上的应用层规范。规范把 HTTP 请求分为三个部分：状态行、请求头、消息主体。">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-07T12:13:19.019Z">
+<meta property="og:description" content="前言HTTP&#x2F;1.1 协议规定的 HTTP 请求方法有 OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE、CONNECT 这几种。其中 POST 一般用来向服务端提交数据，本文主要讨论 POST 提交数据的几种方式。我们知道，HTTP 协议是以 ASCII 码传输，建立在 TCP&#x2F;IP 协议之上的应用层规范。规范把 HTTP 请求分为三个部分：状态行、请求头、消息主体。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-09-05T12:00:13.000Z">
+<meta property="article:modified_time" content="2018-09-07T12:13:19.019Z">
+<meta property="article:author" content="萌新">
+<meta property="article:tag" content="django">
+<meta property="article:tag" content="http">
+<meta property="article:tag" content="post">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="post请求的提交数据的几种方式">
-<meta name="twitter:description" content="前言HTTP/1.1 协议规定的 HTTP 请求方法有 OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE、CONNECT 这几种。其中 POST 一般用来向服务端提交数据，本文主要讨论 POST 提交数据的几种方式。我们知道，HTTP 协议是以 ASCII 码传输，建立在 TCP/IP 协议之上的应用层规范。规范把 HTTP 请求分为三个部分：状态行、请求头、消息主体。">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="/css/style.css?v=1.7.2">
@@ -41,7 +43,7 @@
     <!-- custom head -->
     
 
-</head>
+<meta name="generator" content="Hexo 4.1.1"></head>
 
 <body>
     <div id="loading" class="active"></div>
@@ -149,7 +151,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#引出问题"><span class="post-toc-number">2.</span> <span class="post-toc-text">引出问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#application-x-www-form-urlencoded"><span class="post-toc-number">3.</span> <span class="post-toc-text">application/x-www-form-urlencoded</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#application-json"><span class="post-toc-number">4.</span> <span class="post-toc-text">application/json</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#multipart-form-data"><span class="post-toc-number">5.</span> <span class="post-toc-text">multipart/form-data</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#text-plain-text-json-xml-html"><span class="post-toc-number">6.</span> <span class="post-toc-text">text/plain (text/json/xml/html)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#binary"><span class="post-toc-number">7.</span> <span class="post-toc-text">binary</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#引出问题"><span class="post-toc-number">2.</span> <span class="post-toc-text">引出问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#application-x-www-form-urlencoded"><span class="post-toc-number">3.</span> <span class="post-toc-text">application&#x2F;x-www-form-urlencoded</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#application-json"><span class="post-toc-number">4.</span> <span class="post-toc-text">application&#x2F;json</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#multipart-form-data"><span class="post-toc-number">5.</span> <span class="post-toc-text">multipart&#x2F;form-data</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#text-plain-text-json-xml-html"><span class="post-toc-number">6.</span> <span class="post-toc-text">text&#x2F;plain (text&#x2F;json&#x2F;xml&#x2F;html)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#binary"><span class="post-toc-number">7.</span> <span class="post-toc-text">binary</span></a></li></ol>
         </nav>
     </aside>
 
@@ -210,7 +212,7 @@
 
 
         
-        欢迎一起交流，本文链接：<a href="/2018/09/05/post请求的提交数据的几种方式/" target="_blank" rel="external">http://iyue.top/2018/09/05/post请求的提交数据的几种方式/</a>
+        欢迎一起交流，本文链接：<a href="/2018/09/05/post%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" target="_blank" rel="external">http://iyue.top/2018/09/05/post%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/</a>
         
     </div>
     
@@ -227,7 +229,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/django/">django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/post/">post</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/django/" rel="tag">django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/post/" rel="tag">post</a></li></ul>
 
 
             
@@ -237,7 +239,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/05/post请求的提交数据的几种方式/&title=《post请求的提交数据的几种方式》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/05/post%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/&title=《post请求的提交数据的几种方式》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -247,22 +249,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/05/post请求的提交数据的几种方式/&title=《post请求的提交数据的几种方式》 — 山外小楼&source=我是萌新" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/05/post%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/&title=《post请求的提交数据的几种方式》 — 山外小楼&source=我是萌新" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/05/post请求的提交数据的几种方式/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/05/post%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《post请求的提交数据的几种方式》 — 山外小楼&url=http://iyue.top/2018/09/05/post请求的提交数据的几种方式/&via=http://iyue.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《post请求的提交数据的几种方式》 — 山外小楼&url=http://iyue.top/2018/09/05/post%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/&via=http://iyue.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/05/post请求的提交数据的几种方式/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/05/post%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -285,7 +287,7 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2018/09/06/django的跨域请求设置/" id="post-prev" class="post-nav-link">
+      <a href="/2018/09/06/django%E7%9A%84%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E8%AE%BE%E7%BD%AE/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
         <h4 class="title">django的跨域请求设置</h4>
       </a>
@@ -294,7 +296,7 @@
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/08/24/js变量在内存的存放解惑/" id="post-next" class="post-nav-link">
+      <a href="/2018/08/24/js%E5%8F%98%E9%87%8F%E5%9C%A8%E5%86%85%E5%AD%98%E7%9A%84%E5%AD%98%E6%94%BE%E8%A7%A3%E6%83%91/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">js变量在内存的存放解惑</h4>
       </a>
@@ -334,7 +336,7 @@
 
         <p>
             
-            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div> -->
     <div class="bottom">
@@ -356,7 +358,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/05/post请求的提交数据的几种方式/&title=《post请求的提交数据的几种方式》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/05/post%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/&title=《post请求的提交数据的几种方式》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -366,22 +368,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/05/post请求的提交数据的几种方式/&title=《post请求的提交数据的几种方式》 — 山外小楼&source=我是萌新" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/05/post%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/&title=《post请求的提交数据的几种方式》 — 山外小楼&source=我是萌新" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/05/post请求的提交数据的几种方式/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/05/post%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《post请求的提交数据的几种方式》 — 山外小楼&url=http://iyue.top/2018/09/05/post请求的提交数据的几种方式/&via=http://iyue.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《post请求的提交数据的几种方式》 — 山外小楼&url=http://iyue.top/2018/09/05/post%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/&via=http://iyue.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/05/post请求的提交数据的几种方式/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/05/post%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -392,7 +394,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACp0lEQVR42u3aUWorMRAEwNz/0gnk19jpnpH8/KD2K9hmpVJgNduar6/4+v69Hj95/PzZt89++fjt49+vxzpw4eHh4Y2m/uxqJzebdDJ6fgc8PDy89/Bmk3u9TMndkpms7oCHh4f3T3nJ8DP868IdDw8P7//lzbaNswU3Hh4e3ufw8jhgFuDeW8RjWQseHh5ezGsPwD7h74vne3h4eHiLU/V2M2gbDpJvNxceHh7eDV4e0SZTXB3wX2vnwsPDw7vB2xfTm4i2Pdzat4jh4eHhbXh5yZs/7l/fM1mOvJngj9/j4eHhvYWXTCvZZ9oHfVusR8uHh4eHd4GXMDaAUwddbfCBh4eHd5uXR66b0DZZxPzzernx8PDwjvLyEjlPhTdBRnK3IvjAw8PDO8qbPbjzcnbTtjVrQXj6f8PDw8O7wMtDhLZBKsfM2raKYhoPDw9vzWtbmjYl78V3gvysDw8PD2/NayPavBEqb0rIMfW4eHh4eG/htQO0xXeyGeyPx/Dw8PDew0se6EnR3DZR5ZtEPSs8PDy8a7xZ9LAJVWebTRtk4OHh4d3j5UMmDQSnmgbagvuPfQ8PDw/vEC+/6SaWzcPi/M7tawAeHh7eKd6sbM0D3KS83jRyRZsBHh4e3lFeO61NUJsANkvwdEQ8PDy8C7zNgz4voDcP/dfI+r0BDw8Pb82bHfPvp7WJgFfvDXh4eHhHebPSth04P+Iatlvh4eHhXeN9l9dm89iU8vli4eHh4d3m7YefBbL5RNvguN3Y8PDw8Ga8U4Hs7SCjLdDx8PDwbvNmm0E9WDnKgaIcDw8P78N47ZYwa6vKY98opcbDw8N7Iy+Z3D4anpXyxfkeHh4e3iHe/kHcbg/tEuRgPDw8vNu82at+HlW0XWB51LtvWcDDw8MreT8gqWnOZ8kx1QAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEiklEQVR42u3ay07jQBAFUP7/pxlpVkhDwr1VzkCb4xWCxO0+Rup6vb3F1/vf6+PPH3/TfubfTyarP7r/o7U2Kw4vTJgwYcL0I5nen17JYglKcs/nd559Pn/lX3wXEyZMmDAdztQGAc+P1Q10+0ry4OPR3Z7vHRMmTJgw/R6m59/KD+YkTc0/k7C2LxsTJkyYMGEaJpDBuglcm64noJgwYcKE6d5M7e2S43+W0M4apa/jxoQJEyZMpzPNBnfu8fPL55swYcKECdO3Mr2XV1uibe/ZHthtu3S4a0yYMGHCdCxT8oh5iNA2Dtsib9JMLYq25YqYMGHChOlEpqR4ugkUrhqa2aPnpdtPVsGECRMmTDdiygd38vSyvVv+rU1YUNBjwoQJE6ZjmdoCaAvUJq5X3a0NJqL0GBMmTJgwHct0VUDwisGgTTl4E0w8XBETJkyYMB3L1JZ0N8nnDHfTQN0UpjFhwoQJ07lMbbE1gZsd9nkzNQdNvhUVqTFhwoQJ0+FM+ThOW/bdA+XByj7F/aLriwkTJkyYDmdqy75tvy9vUl67Sptaf/JUmDBhwoTppkx5OTXZfLvhtiWZp9B5+RgTJkyYMN2DadMOTI7ePGXNm6n7UKYYS8KECRMmTDdiSoDatuJmcGc26JOP+ETBByZMmDBhOpYpH3m5tvHZgubDN21JenhhwoQJE6ZDmGaDL3lLsi0Nv/qVtCNHD2vhmDBhwoTpEKZrg4bN2M3s8/mT5E+1Gf3BhAkTJkw/jSkfdmnLpu0YTfsks20Pk2pMmDBhwnQsU14kzbe6STg3zdT2lQxbmJgwYcKE6XCmttw5O/jbNmr7GvJSbzFahAkTJkyYjmWK/hw0/zbhxawcnIcO+31hwoQJE6bTmVqItpG5KeO240T5628TaUyYMGHCdBZT24ZsE878iJ0VdhOgy/5rMGHChAnTgUzXtiH3ae21ieuG7JO9Y8KECROmA5naY3g/ipofw7PvtkXhKL3HhAkTJkzHMl11MLfl3U0Y0ZaMW76Hv8eECRMmTAcytaMqzw/Odph1FoLkKXd+5GPChAkTprsyzUqxeTK5bzfm6+4LwaunwoQJEyZMP5IpPyCveog82U5CgdeNHGHChAkTpnswzZLGZLFNQzR5ee3r3KT0mDBhwoTprkxJkbRtMSal4XakZtPazNNmTJgwYcJ0ItOmTZgnw/kG2teW36dtu35SIcCECRMmTMcytVuaJZztoT4LQWqCBBoTJkyYMN2CKVk+P26vCg7aACKnLFJ9TJgwYcJ0LFO7mTw93rcYZ2NDz4/8TaKOCRMmTJhOZHovr9mDJo/bDu7MisXDJB8TJkyYMB3LlF95wrlJUPftzFnSnv8VEyZMmDCdyJS3Etvhm01jMg8p2sR7eORjwoQJE6bDmfIxlzzdreOOOK39hlIyJkyYMGH6BUz5YM3/CRSuKgRHO8WECRMmTL+GKU9NN6Xhdlw1fwHDxi0mTJgwYTqcaVPknXVNW7I8jNiAPtwdJkyYMGE6lqktgOYJ7Swp3WwpeW2XoWDChAkTpp/O9AeVvpUmNpBcrAAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 

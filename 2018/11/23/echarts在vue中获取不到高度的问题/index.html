@@ -24,14 +24,14 @@
     <meta name="description" content="问题引出在项目中，采用了element-ui框架及echarts；模板结构是一个tab切换页中，引入了自己做了简单封装的echarts；在上一版还可以正常显示出图，而在后来对封装的echarts做了简单更新后，图表在tab切换页无法显示出来； 问题排查通过查看element元素发生，图表元素canvas的宽度为0（高度是我自己指定的）；然后在echarts组件中通过apiechartsinstan">
 <meta property="og:type" content="article">
 <meta property="og:title" content="echarts在vue中获取不到高度的问题">
-<meta property="og:url" content="http://iyue.top/2018/11/23/echarts在vue中获取不到高度的问题/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;iyue.top&#x2F;2018&#x2F;11&#x2F;23&#x2F;echarts%E5%9C%A8vue%E4%B8%AD%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%88%B0%E9%AB%98%E5%BA%A6%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;index.html">
 <meta property="og:site_name" content="山外小楼">
 <meta property="og:description" content="问题引出在项目中，采用了element-ui框架及echarts；模板结构是一个tab切换页中，引入了自己做了简单封装的echarts；在上一版还可以正常显示出图，而在后来对封装的echarts做了简单更新后，图表在tab切换页无法显示出来； 问题排查通过查看element元素发生，图表元素canvas的宽度为0（高度是我自己指定的）；然后在echarts组件中通过apiechartsinstan">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-26T08:08:41.021Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-11-23T10:21:45.000Z">
+<meta property="article:modified_time" content="2018-11-26T08:08:41.021Z">
+<meta property="article:author" content="萌新">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="echarts在vue中获取不到高度的问题">
-<meta name="twitter:description" content="问题引出在项目中，采用了element-ui框架及echarts；模板结构是一个tab切换页中，引入了自己做了简单封装的echarts；在上一版还可以正常显示出图，而在后来对封装的echarts做了简单更新后，图表在tab切换页无法显示出来； 问题排查通过查看element元素发生，图表元素canvas的宽度为0（高度是我自己指定的）；然后在echarts组件中通过apiechartsinstan">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="/css/style.css?v=1.7.2">
@@ -40,7 +40,7 @@
     <!-- custom head -->
     
 
-</head>
+<meta name="generator" content="Hexo 4.1.1"></head>
 
 <body>
     <div id="loading" class="active"></div>
@@ -216,7 +216,7 @@
 
 
         
-        欢迎一起交流，本文链接：<a href="/2018/11/23/echarts在vue中获取不到高度的问题/" target="_blank" rel="external">http://iyue.top/2018/11/23/echarts在vue中获取不到高度的问题/</a>
+        欢迎一起交流，本文链接：<a href="/2018/11/23/echarts%E5%9C%A8vue%E4%B8%AD%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%88%B0%E9%AB%98%E5%BA%A6%E7%9A%84%E9%97%AE%E9%A2%98/" target="_blank" rel="external">http://iyue.top/2018/11/23/echarts%E5%9C%A8vue%E4%B8%AD%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%88%B0%E9%AB%98%E5%BA%A6%E7%9A%84%E9%97%AE%E9%A2%98/</a>
         
     </div>
     
@@ -241,7 +241,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/11/23/echarts在vue中获取不到高度的问题/&title=《echarts在vue中获取不到高度的问题》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/11/23/echarts%E5%9C%A8vue%E4%B8%AD%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%88%B0%E9%AB%98%E5%BA%A6%E7%9A%84%E9%97%AE%E9%A2%98/&title=《echarts在vue中获取不到高度的问题》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -251,22 +251,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/11/23/echarts在vue中获取不到高度的问题/&title=《echarts在vue中获取不到高度的问题》 — 山外小楼&source=我是萌新" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/11/23/echarts%E5%9C%A8vue%E4%B8%AD%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%88%B0%E9%AB%98%E5%BA%A6%E7%9A%84%E9%97%AE%E9%A2%98/&title=《echarts在vue中获取不到高度的问题》 — 山外小楼&source=我是萌新" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/11/23/echarts在vue中获取不到高度的问题/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/11/23/echarts%E5%9C%A8vue%E4%B8%AD%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%88%B0%E9%AB%98%E5%BA%A6%E7%9A%84%E9%97%AE%E9%A2%98/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《echarts在vue中获取不到高度的问题》 — 山外小楼&url=http://iyue.top/2018/11/23/echarts在vue中获取不到高度的问题/&via=http://iyue.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《echarts在vue中获取不到高度的问题》 — 山外小楼&url=http://iyue.top/2018/11/23/echarts%E5%9C%A8vue%E4%B8%AD%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%88%B0%E9%AB%98%E5%BA%A6%E7%9A%84%E9%97%AE%E9%A2%98/&via=http://iyue.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/11/23/echarts在vue中获取不到高度的问题/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/11/23/echarts%E5%9C%A8vue%E4%B8%AD%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%88%B0%E9%AB%98%E5%BA%A6%E7%9A%84%E9%97%AE%E9%A2%98/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -289,7 +289,7 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2019/02/01/async-await里的并行和串行/" id="post-prev" class="post-nav-link">
+      <a href="/2019/02/01/async-await%E9%87%8C%E7%9A%84%E5%B9%B6%E8%A1%8C%E5%92%8C%E4%B8%B2%E8%A1%8C/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
         <h4 class="title">async/await里的并行和串行</h4>
       </a>
@@ -298,7 +298,7 @@
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/10/12/vue项目在国际化中遇到的问题/" id="post-next" class="post-nav-link">
+      <a href="/2018/10/12/vue%E9%A1%B9%E7%9B%AE%E5%9C%A8%E5%9B%BD%E9%99%85%E5%8C%96%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">vue项目在国际化中遇到的问题</h4>
       </a>
@@ -338,7 +338,7 @@
 
         <p>
             
-            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div> -->
     <div class="bottom">
@@ -360,7 +360,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/11/23/echarts在vue中获取不到高度的问题/&title=《echarts在vue中获取不到高度的问题》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/11/23/echarts%E5%9C%A8vue%E4%B8%AD%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%88%B0%E9%AB%98%E5%BA%A6%E7%9A%84%E9%97%AE%E9%A2%98/&title=《echarts在vue中获取不到高度的问题》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -370,22 +370,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/11/23/echarts在vue中获取不到高度的问题/&title=《echarts在vue中获取不到高度的问题》 — 山外小楼&source=我是萌新" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/11/23/echarts%E5%9C%A8vue%E4%B8%AD%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%88%B0%E9%AB%98%E5%BA%A6%E7%9A%84%E9%97%AE%E9%A2%98/&title=《echarts在vue中获取不到高度的问题》 — 山外小楼&source=我是萌新" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/11/23/echarts在vue中获取不到高度的问题/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/11/23/echarts%E5%9C%A8vue%E4%B8%AD%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%88%B0%E9%AB%98%E5%BA%A6%E7%9A%84%E9%97%AE%E9%A2%98/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《echarts在vue中获取不到高度的问题》 — 山外小楼&url=http://iyue.top/2018/11/23/echarts在vue中获取不到高度的问题/&via=http://iyue.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《echarts在vue中获取不到高度的问题》 — 山外小楼&url=http://iyue.top/2018/11/23/echarts%E5%9C%A8vue%E4%B8%AD%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%88%B0%E9%AB%98%E5%BA%A6%E7%9A%84%E9%97%AE%E9%A2%98/&via=http://iyue.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/11/23/echarts在vue中获取不到高度的问题/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/11/23/echarts%E5%9C%A8vue%E4%B8%AD%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%88%B0%E9%AB%98%E5%BA%A6%E7%9A%84%E9%97%AE%E9%A2%98/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -396,7 +396,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACxElEQVR42u3aQW4bMRAEQP//0wqQU4CAq+4haelQezIsacWigeW4Z35+4uv19/r/N//+/vV4rT67ukOyhmMXHh4e3mjpz8ta/Wb1c77EduParcTDw8O7x3teSvuV7QN9tVk778HDw8P7Bl5StT4Xzfn986MIDw8P7/t5yQEwixvaYwkPDw/vs7wkjHh+cCcHRvK9O6/i4eHh/Q6vbYB9w88X+3t4eHh4G1319oG7Uyjnny1Wi4eHh3eBlwQHeaE8a4m1r9blOx4eHt4FXvs4brcm3448qqjDXDw8PLyjvFkZnUeubajRbuub9+Ph4eEd5SVFcPvQzxtX7d8hPyTw8PDwfofXDgHk1XqylDaAiKIHPDw8vAu8WXG8U0C3998JkfHw8PBu8NqWVf7QT0rwWdhRpNF4eHh4F3g7D+I2epiNFCTHyRs2Hh4e3jXezhfvYNoRgbocx8PDw7vAa5v6ebN/J+qdjXYt74aHh4d3lJd/oC1wTxXiswsPDw/vBm9W+Oad+jzOODuBi4eHh/c7vLx43Smpd8YC6gYeHh4e3jVeG8vmR8LOcGq79cuSGg8PD+8oLx+WykOEdpwrv5I7LF/Fw8PDO8Rrm/rJQ/9sMNEeUctzDw8PD+8Qr41iZ7FCPkS102zLBxHw8PDw9nl5WNA2pdoNysvlIjrBw8PDO8pLgtF8MCtPAJLyvR4USBpgeHh4eEd5s0Ni1tRvI4zhevDw8PAu8E6NPc3K8dmw1zC6xcPDwzvEe5XXLNKdAdqhq+g/Bjw8PLxtXjvw1L4zb27ld2sLcTw8PLwbvFmEmiy0vXO+Wfmm4OHh4d3j5Q/l2astrA0j3mTVeHh4eB/i7bf5k8J6p1W2DHPx8PDwPsrbL5dnJftsVAsPDw/vHu9UZNAWx7OYo/gHAA8PD+8Cb9bWascI9heaHFQH+nt4eHh4Tyv5A9hrGDyY1JkgAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEl0lEQVR42u3aQY7bMBAEwP3/p51rgqzl7iETiNrSyXC0olgOQE5zvr7i6/Xm+v1f39357p53z5+NmLzz9f0bLkyYMGHCdEum1+XVTjJ5rb/vueZe+Wmvv0/mjgkTJkyYnsHUPm62tF//VbuozyacbyYwYcKECdPPZMonlqO0BMnGYvaDYcKECROmn8zUlo45ZVvKzjYomDBhwoTpJzMlj1spWa9RknFnYXH7/A1ZOCZMmDBhuhnTbDF+xud/0t+ECRMmTJhuw/QaXXlcm5epu0ZZmdfb+WLChAkTpmOZZmFuQpCvsOubkvU1PTrsxIQJEyZMxzLNDizXm3vaA8jZQj47iMWECRMmTM9gmh0TJt/P8ua2AE7G2hD1YsKECROmY5naWDZHyVtwZm06s7J86U5MmDBhwnQgU3IomG8Ico58Oc9X5+T7ZHbf3I8JEyZMmI5lWm+CaRFb1nar0R7QJkE2JkyYMGE6l+m6gaYdbO/CP2snyn+kouUIEyZMmDAdzrTeuJMHtSvNNG003Lb4vH03TJgwYcJ0OFMbxb7KK9+CtN0ys/A3ecI3WTgmTJgwYXoQU17otqArS/jsR5o9MzoLxYQJEyZMhzC10W1bguZtNO3B5GxzkJf0mDBhwoTpdKa9r5KUqetFcnu0ORvxm3swYcKECdODmJKXS0LSWQNr2+6zvhGJQmRMmDBhwnQ4U7tM5oPNFunZ9zliXTBjwoQJE6ZjmdqWmhXQdrGf/ZyzJqHorzBhwoQJ01FM7VZgV8Fct84sFNXr88KECRMmTKczJQHrriabJGxtC9S9nz+k4JgwYcKE6SimZPi2gSZnmkWx65OfNQxhwoQJE6YTmfJAdmW7MAtbk5A3v5ZCZEyYMGHCdCzTLCqdlbVtjLt3erPD2rdpASZMmDBhOoRpFvLuOixsi9u26We2TdmWhWPChAkTptswJUvpeuy7Nw7e2zwUJd+YMGHChOlApr2L/Qxi5d32tuYUJ72YMGHChOkopiTSnUWo10tvsvzv3SjkEXZ9qIkJEyZMmG7J1BaB7SYgX7zbY862DajdQGDChAkTpmczJWFoezSY0LRP23Vg+eHnxIQJEyZMD2L6+mdXGyUnd643AEUhLyZMmDBhOpxpva0nPz7MS9AWtB032Ub8sSHAhAkTJkwHMq23wiSlads6s7Lwz6LhqPzGhAkTJkwHMq2HuTnN+rFoGxCvNOt8+H+ECRMmTJiOYmoL3aTUbEvQlbC43RbUo2DChAkTpkcw5Y9uB8uX7bY1Z/Z9XiR/yMIxYcKECdPtmXKg2fCzsHh9+W97b9qfHxMmTJgwncL0Kq/2yHAWvLZjtc+si2FMmDBhwnQsUxutthuFvZuGWfS8/hkTJkyYMJ3ONItcV0LbdvFequZHEfaGLidMmDBhwnQzpnyhzUPS5BDx/wfE+eFrnR9jwoQJE6bDmWZNM9dPa6eXF+HXb9K+MyZMmDBh+glMebBbLLQlxEpZ3s4REyZMmDA9iWklom1L03ZJnsW+bQD9YRaYMGHChOlYpnyR3tXcM/vbtiyfBccrB6WYMGHChOlmTL8A5+WMrQt/P3IAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 

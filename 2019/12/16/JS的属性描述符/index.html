@@ -24,14 +24,14 @@
     <meta name="description" content="默认创建对象时属性为数据属性 数据属性字面量创建属性时默认为 123456&amp;#123;  value: undefined,  writable: true,  enumerable: true,  configurable: true&amp;#125; Object.defineProperty方法创建属性时默认为 123456&amp;#123;  value: undefined,  writable:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS的属性描述符">
-<meta property="og:url" content="http://iyue.top/2019/12/16/JS的属性描述符/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;iyue.top&#x2F;2019&#x2F;12&#x2F;16&#x2F;JS%E7%9A%84%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6&#x2F;index.html">
 <meta property="og:site_name" content="山外小楼">
 <meta property="og:description" content="默认创建对象时属性为数据属性 数据属性字面量创建属性时默认为 123456&amp;#123;  value: undefined,  writable: true,  enumerable: true,  configurable: true&amp;#125; Object.defineProperty方法创建属性时默认为 123456&amp;#123;  value: undefined,  writable:">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-16T09:35:30.604Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-16T07:21:16.000Z">
+<meta property="article:modified_time" content="2019-12-16T09:35:30.604Z">
+<meta property="article:author" content="萌新">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS的属性描述符">
-<meta name="twitter:description" content="默认创建对象时属性为数据属性 数据属性字面量创建属性时默认为 123456&amp;#123;  value: undefined,  writable: true,  enumerable: true,  configurable: true&amp;#125; Object.defineProperty方法创建属性时默认为 123456&amp;#123;  value: undefined,  writable:">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="/css/style.css?v=1.7.2">
@@ -40,7 +40,7 @@
     <!-- custom head -->
     
 
-</head>
+<meta name="generator" content="Hexo 4.1.1"></head>
 
 <body>
     <div id="loading" class="active"></div>
@@ -212,7 +212,7 @@
 
 
         
-        欢迎一起交流，本文链接：<a href="/2019/12/16/JS的属性描述符/" target="_blank" rel="external">http://iyue.top/2019/12/16/JS的属性描述符/</a>
+        欢迎一起交流，本文链接：<a href="/2019/12/16/JS%E7%9A%84%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/" target="_blank" rel="external">http://iyue.top/2019/12/16/JS%E7%9A%84%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/</a>
         
     </div>
     
@@ -237,7 +237,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2019/12/16/JS的属性描述符/&title=《JS的属性描述符》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2019/12/16/JS%E7%9A%84%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/&title=《JS的属性描述符》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -247,22 +247,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2019/12/16/JS的属性描述符/&title=《JS的属性描述符》 — 山外小楼&source=我是萌新" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2019/12/16/JS%E7%9A%84%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/&title=《JS的属性描述符》 — 山外小楼&source=我是萌新" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2019/12/16/JS的属性描述符/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2019/12/16/JS%E7%9A%84%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS的属性描述符》 — 山外小楼&url=http://iyue.top/2019/12/16/JS的属性描述符/&via=http://iyue.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS的属性描述符》 — 山外小楼&url=http://iyue.top/2019/12/16/JS%E7%9A%84%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/&via=http://iyue.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2019/12/16/JS的属性描述符/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2019/12/16/JS%E7%9A%84%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -287,7 +287,7 @@
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2019/07/26/页面滚动条的相关属性概念/" id="post-next" class="post-nav-link">
+      <a href="/2019/07/26/%E9%A1%B5%E9%9D%A2%E6%BB%9A%E5%8A%A8%E6%9D%A1%E7%9A%84%E7%9B%B8%E5%85%B3%E5%B1%9E%E6%80%A7%E6%A6%82%E5%BF%B5/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">页面滚动条的相关属性概念</h4>
       </a>
@@ -327,7 +327,7 @@
 
         <p>
             
-            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div> -->
     <div class="bottom">
@@ -349,7 +349,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2019/12/16/JS的属性描述符/&title=《JS的属性描述符》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2019/12/16/JS%E7%9A%84%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/&title=《JS的属性描述符》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -359,22 +359,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2019/12/16/JS的属性描述符/&title=《JS的属性描述符》 — 山外小楼&source=我是萌新" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2019/12/16/JS%E7%9A%84%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/&title=《JS的属性描述符》 — 山外小楼&source=我是萌新" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2019/12/16/JS的属性描述符/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2019/12/16/JS%E7%9A%84%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS的属性描述符》 — 山外小楼&url=http://iyue.top/2019/12/16/JS的属性描述符/&via=http://iyue.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS的属性描述符》 — 山外小楼&url=http://iyue.top/2019/12/16/JS%E7%9A%84%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/&via=http://iyue.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2019/12/16/JS的属性描述符/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2019/12/16/JS%E7%9A%84%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -385,7 +385,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIElEQVR42u3aSW7DMBAEQP//0w6QqyGleygHEFU8GbITqngYzMLXK17v3/X55HOdf/v5f45+//rGwsDAuC0j2fLoyfpxnDOK48DAwHgA43zLWcA9+rx+WBgYGBj59i0jz+gwMDAwVhjfKIwxMDAwEsYs8J0njm0r7Z9qcQwMjBsyZsHxfz5/cb6BgYFxE8b70jVr9K+/CQYGxt6MNo07f56kem0iWAwMMDAwtmZcNRLIU731kviCfh4GBsZtGbMWW1t25sgkZGNgYDyNkQfZWSqZJHmXHR8GBsZGjLw0bcvXdsCQfBtNYjEwMDZltJcbZkVs8uptsw8DAwNjFjTbixT5UPOC+QYGBsatGHlClhS65+ljG0Dz0IyBgfEExkp/bhZwZyPPwxIaAwNja0aehOWlbDuYbAFR1xADA2MjxvoocdY+y59HaSUGBsbWjPyyxaz4nF3gSK6UYWBgPI2x0tBfGWom6ePwzggGBsZGjHxgOWufrTfjorCOgYGxNWNloDhLB/PXzY8VAwNjb0be7m8b/SuNtrqQxsDA2JrRNv3by1vtYDJvt73yn2JgYNyc8S5X24ZrYcOEEgMDY2tGvmbp42wY2R4TBgbGExgrxWe7WTuKKP4WAwPjAYy2QG1fbn39UfpiYGBgxGXteXo3O5rimgUGBsbjGbPLGes8DAwMjPVLErMQmRe00V4YGBhbM9rBQEtaH0+2DT4MDIyNGD8x8VvRKt7gEgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvElEQVR42u3awYrjMBAEUP//T2dhTwMzdqpa0mwWnk8hGEfPB6lT3dcVX6+/19fPX7+5u/P799+fk995d/+GCw8PD2+09Lsrvyd/Ea/yen7y83rw8PDwzvHyw2AXvv0mP1Tw8PDwPof3vLmvPzNn4+Hh4f2PvOTOfENv4w88PDy8T+C1QUAb6eYl+N5wBA8PD+8Eb7ZN/9vPx/t7eHh4eKOuer4p5w3+NjJeWi0eHh7eqY78lZTRs+GqZCufDR8ko1p4eHh4J3hJlLD38DgxanBbfOPh4eEd4D23l9pxqHaLn0XAz4dBdDzg4eHhLfPaUnUlmJgVx23Rj4eHh3eO1y6iLXlXMO2RUMQveHh4eAu8vOG0coSsD2y1q43CXDw8PLwRL29x1Q37hYNk5aD6oaTGw8PD28pbGRFYKYiTZti2wwYPDw/vGG82MNoeJElskRf30RGCh4eHt5WXD10lG3o+LtCWxe0T6pkyPDw8vJJ3LoxYKaDzY+b2heLh4eEd4yWl894yOo8b2qgiOvfw8PDwFng5ZjYUNRsyaMcL3rxWPDw8vGO8dqPPg4bZtp6HyG9WgoeHh3eYl2/lKy2x2UBqu1o8PDy8E7y8qG0X0ba72qbalVx4eHh4v8JrI4ZZoNCW48kxU/9XwMPDwxvx8uGnNjhoB6TauLa+Bw8PD28Tr2105U2y9cGCDUcOHh4e3q/wZiFFG0ysBLhF6Y+Hh4d3gNf+/CwUbkPediXRavHw8PA28V7llb+ONsZt8VEAjYeHh3eAt3fT3zWuOuv+J1EvHh4e3i5eHtGuF7tJfNCGuW/iDDw8PLxjvL3Ba37+nHiJ1+yN4uHh4R3g5UtZqe7b50RhLh4eHt6H8fYuaNd4Fh4eHt5p3noY0bbBZoFF/QQ8PDy8A7xZA2y2lOTO9dbahtEBPDw8vJ9/6w/o35xxC2WoogAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 

@@ -22,20 +22,21 @@
     
     <meta name="keywords" content="cookie,session">
     <meta name="description" content="该篇文章很多段落来自单点登录原理与简单实现，大家可以先拜读这篇文章，这篇文章讲述十分详细，我这里只是插了一些自己的疑虑，而且可能还说的不是很清楚，权当自己做个笔记了 单系统登录机制 http无状态协议  http作为通信协议，是无状态的，浏览器的每一次请求，服务器会独立处理，不与之前或之后的请求产生关联。   但这也同时意味着，任何用户都能通过浏览器访问服务器资源，如果想保护服务器的某些资源，必须">
-<meta name="keywords" content="cookie,session">
 <meta property="og:type" content="article">
 <meta property="og:title" content="单点登录的实现方式">
-<meta property="og:url" content="http://iyue.top/2018/09/06/单点登录的实现方式/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;iyue.top&#x2F;2018&#x2F;09&#x2F;06&#x2F;%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F&#x2F;index.html">
 <meta property="og:site_name" content="山外小楼">
 <meta property="og:description" content="该篇文章很多段落来自单点登录原理与简单实现，大家可以先拜读这篇文章，这篇文章讲述十分详细，我这里只是插了一些自己的疑虑，而且可能还说的不是很清楚，权当自己做个笔记了 单系统登录机制 http无状态协议  http作为通信协议，是无状态的，浏览器的每一次请求，服务器会独立处理，不与之前或之后的请求产生关联。   但这也同时意味着，任何用户都能通过浏览器访问服务器资源，如果想保护服务器的某些资源，必须">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://iyue.top/img/sso_001.png">
-<meta property="og:image" content="http://iyue.top/img/sso_002.png">
-<meta property="og:updated_time" content="2018-09-07T12:12:10.994Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;iyue.top&#x2F;img&#x2F;sso_001.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;iyue.top&#x2F;img&#x2F;sso_002.png">
+<meta property="article:published_time" content="2018-09-06T13:02:01.000Z">
+<meta property="article:modified_time" content="2018-09-07T12:12:10.994Z">
+<meta property="article:author" content="萌新">
+<meta property="article:tag" content="cookie">
+<meta property="article:tag" content="session">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单点登录的实现方式">
-<meta name="twitter:description" content="该篇文章很多段落来自单点登录原理与简单实现，大家可以先拜读这篇文章，这篇文章讲述十分详细，我这里只是插了一些自己的疑虑，而且可能还说的不是很清楚，权当自己做个笔记了 单系统登录机制 http无状态协议  http作为通信协议，是无状态的，浏览器的每一次请求，服务器会独立处理，不与之前或之后的请求产生关联。   但这也同时意味着，任何用户都能通过浏览器访问服务器资源，如果想保护服务器的某些资源，必须">
-<meta name="twitter:image" content="http://iyue.top/img/sso_001.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;iyue.top&#x2F;img&#x2F;sso_001.png">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="/css/style.css?v=1.7.2">
@@ -44,7 +45,7 @@
     <!-- custom head -->
     
 
-</head>
+<meta name="generator" content="Hexo 4.1.1"></head>
 
 <body>
     <div id="loading" class="active"></div>
@@ -253,7 +254,7 @@
 
 
         
-        欢迎一起交流，本文链接：<a href="/2018/09/06/单点登录的实现方式/" target="_blank" rel="external">http://iyue.top/2018/09/06/单点登录的实现方式/</a>
+        欢迎一起交流，本文链接：<a href="/2018/09/06/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/" target="_blank" rel="external">http://iyue.top/2018/09/06/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/</a>
         
     </div>
     
@@ -270,7 +271,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cookie/">cookie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/session/">session</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cookie/" rel="tag">cookie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/session/" rel="tag">session</a></li></ul>
 
 
             
@@ -280,7 +281,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/06/单点登录的实现方式/&title=《单点登录的实现方式》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/06/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/&title=《单点登录的实现方式》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -290,22 +291,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/06/单点登录的实现方式/&title=《单点登录的实现方式》 — 山外小楼&source=我是萌新" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/06/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/&title=《单点登录的实现方式》 — 山外小楼&source=我是萌新" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/06/单点登录的实现方式/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/06/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《单点登录的实现方式》 — 山外小楼&url=http://iyue.top/2018/09/06/单点登录的实现方式/&via=http://iyue.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《单点登录的实现方式》 — 山外小楼&url=http://iyue.top/2018/09/06/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/&via=http://iyue.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/06/单点登录的实现方式/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/06/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -328,7 +329,7 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2018/09/07/XXS与CSRF/" id="post-prev" class="post-nav-link">
+      <a href="/2018/09/07/XXS%E4%B8%8ECSRF/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
         <h4 class="title">XSS与CSRF</h4>
       </a>
@@ -337,7 +338,7 @@
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/09/06/django的跨域请求设置/" id="post-next" class="post-nav-link">
+      <a href="/2018/09/06/django%E7%9A%84%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E8%AE%BE%E7%BD%AE/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">django的跨域请求设置</h4>
       </a>
@@ -377,7 +378,7 @@
 
         <p>
             
-            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div> -->
     <div class="bottom">
@@ -399,7 +400,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/06/单点登录的实现方式/&title=《单点登录的实现方式》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://iyue.top/2018/09/06/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/&title=《单点登录的实现方式》 — 山外小楼&pic=http://iyue.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -409,22 +410,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/06/单点登录的实现方式/&title=《单点登录的实现方式》 — 山外小楼&source=我是萌新" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://iyue.top/2018/09/06/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/&title=《单点登录的实现方式》 — 山外小楼&source=我是萌新" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/06/单点登录的实现方式/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://iyue.top/2018/09/06/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《单点登录的实现方式》 — 山外小楼&url=http://iyue.top/2018/09/06/单点登录的实现方式/&via=http://iyue.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《单点登录的实现方式》 — 山外小楼&url=http://iyue.top/2018/09/06/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/&via=http://iyue.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/06/单点登录的实现方式/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://iyue.top/2018/09/06/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -435,7 +436,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3a0WrDMAwF0P7/T2ewp8JIeiU1g9jHT6Okjk8fNMnS6xWv43ddf/L++fv6+/nZPmfPfG1hYGA8lnFcrvkLzna7xuRnw8DA2IdxHWSvj3IdTJNQm5A+fBcDAwMjCJfVQ+fJIgYGBkYv8OVJZL4PBgYGxjUjKWKrCV+vGL69FsfAwHggo9oY+M+/b+xvYGBgPIRxFFfvom3yZHQqDAyMpRlJOZq0JPNWZXWkI387BgbG2owk17qjfK2OXJTZGBgYSzCqCd98zGJ+qfehs4GBgbEcI29kTsJutQnRa1dgYGDswMgx+evnwbrZQsDAwFiOkadu1YGJPIxWr9VOGwMYGBjLMa4Tu+pV2mSEorcDBgbGDoxqOthL9XoNyHLQx8DAWJqRj0Hk116TcbFemMbAwNiBMWk05r9Q8vyokMbAwFiUkQTBSRidjHTkZ8PAwNiHkR+lOvKVF8a91ikGBsYOjOpwWH6tn4yO9VoUGBgYuzHmCVwVPD9JVMRiYGA8nFFIvOLSNL+SS96OgYGBUb18/1bYzVPAqNeKgYGxNKP6tW+NSvTA0fMYGBjLMY7i6pW4VXCegGJgYOzAqGZcvXDZaxUkBTAGBsY+jDzI3rHygDv674GBgbEEoxpkqylgvkOzFsfAwMCIA3ESNCdp4unOGBgYGK2gWR2bGBXDGBgYGzB6RWw1vPbSvoiNgYGxNKPXGKgmfJOkM/+xMDAwlmP8AA5Z9Rt+e1mfAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD6klEQVR42u3aQXLjMAwEQP//08k1VY7lGYBy+dA6bSVaSmwdEAzxeMTXz5/r+SfP1/P/nT0lv//VGz7uuHDgwIEDx2jR66WTBycr5Pe8uvP6U7UfDwcOHDhwnOJINtM+Moe7vvN65fzdrp+IAwcOHDi+h6Mt1dcrJ11VXshx4MCBA8c3c+SNX9QsBRndLGTEgQMHDhzfwJGUyaR92gd/ebPXlvnDWSkOHDhw4JjUuyi2+/5/3zLfgQMHDhw4FuXquiwl5bYt1adixGJfOHDgwIFjzdEWrXzbbUh3INQbfYZ/VsOBAwcOHEc5NuNr+0huNjDRDjoMT+Fw4MCBA8eCY5Yy5i1WOyQx29jwqAkHDhw4cBzl2AR8+yGJNnbMS/J1qxl1tDhw4MCBI+DIy8++6ZqNx7WN2azY48CBAweOUxyzgYC22csL+aYB24SYq+E5HDhw4MAxGiBIxhc2ZbvtO2cr1MdOOHDgwIFjzZFvPmmBks3cMaDQFmYcOHDgwHGWoy1js1fMw7tNQNmWYRw4cODAcR/HrOy9esCsAOcjFG3jN2vwcODAgQNHy5GPBcwap9mAQtLgbcrwy9/iwIEDB441R9LetBtrByPaTzILKJM3xIEDBw4ce47ZPF3e1D3W19myigMHDhw4PsOR9C9tJDcrxrNS3a5fhIM4cODAgaPkaLe9KaWbkYg8QNwEkThw4MCBY88xK4TJsVDSEG4+QxsaRkdZOHDgwIHjEEceC7ZBYT48lx8XnQofi784cODAgQNHyZGXz9nRTrLm7H02B2Y4cODAgeMOjlOtWl5K83G32VBdfn9thgMHDhw4Ao684G1GE9qV259v3uRlOIgDBw4cOBYcszBudv8+KNx8vDesOHDgwIFjzTFbYnNAlVNuGrZ8xOHNWRwOHDhw4FhwJPFZ/or7ALFtzGZHZThw4MCB4yxHXpDa19qEfXkpbf8UePPBcODAgQPHmmNTbtu48HpLbdFtm8O6BcWBAwcOHCOO/SHNrGS2AeKsN80HIHDgwIEDxx0c+YP3bdipbc+aNxw4cODAcTdHvuG2dM0atnxLCUcRUOLAgQMHjkNnRkkRykO6TfEe5ppBoFnciQMHDhw4Fhw/5TUrkDnfqc+Q/xwHDhw4cJzlaAtYHvPlLVnb7G1ixFljiQMHDhw42mflrdcdHEmoNwsHh8MWOHDgwIHjEMemUM0OpfKBuccN15usFAcOHDhwfIRjs9VTcJvBvigcxIEDBw4cH+Roj23ag6i2hcsHIIqCjQMHDhw4DnHMgrZNM5aPMrRDFe3Q3iorxYEDBw4co8zt1EL7wpkfI23KPA4cOHDgGHH8AgrL4pUhoHALAAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
 
 
